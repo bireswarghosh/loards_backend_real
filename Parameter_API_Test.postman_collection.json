@@ -1,0 +1,139 @@
+{
+	"info": {
+		"name": "Parameter API Test",
+		"description": "Test collection for Indoor Parameter Setup API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET All Parameters",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1NDg5ODg1MywiZXhwIjoyNTEyMjgxMjUzfQ.QeHkKyameExcGYkUlP7MwoQIPDplAjNGF3NZCSRMqIw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://xrk77z9r-5000.inc1.devtunnels.ms/api/v1/parameters",
+					"protocol": "https",
+					"host": [
+						"xrk77z9r-5000",
+						"inc1",
+						"devtunnels",
+						"ms"
+					],
+					"path": [
+						"api",
+						"v1",
+						"parameters"
+					]
+				}
+			}
+		},
+		{
+			"name": "UPDATE All Parameters",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1NDg5ODg1MywiZXhwIjoyNTEyMjgxMjUzfQ.QeHkKyameExcGYkUlP7MwoQIPDplAjNGF3NZCSRMqIw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"DoctotVisitInBill\": \"Y\",\n  \"DoctotVisitInEst\": \"Y\",\n  \"AddServiceMed\": \"Y\",\n  \"ServiceMedPer\": 115,\n  \"AddServiceDiag\": \"Y\",\n  \"ServiceDiagPer\": 115,\n  \"ChkOutTime\": \"1 PM\",\n  \"FixedServiceBed\": 0,\n  \"MedBillShow\": \"Y\",\n  \"AddServiceOT\": \"Y\",\n  \"CopSCH\": 20,\n  \"EditTime\": \"Y\",\n  \"MedAdd\": \"Y\",\n  \"AddSrvDr\": \"Y\",\n  \"CM\": \"Y\",\n  \"COMM\": \"N\",\n  \"RecColl\": \"Y\",\n  \"FBYN\": \"Y\",\n  \"SMoneyYN\": \"Y\",\n  \"AdmChkTime\": \"Y\",\n  \"GChkTime\": \"12:00 PM\",\n  \"MedP\": 2,\n  \"DagP\": 101,\n  \"AdmTime\": \"1:00 PM\",\n  \"DIRA\": \"N\",\n  \"DIRF\": \"N\",\n  \"DuplicateMR\": \"N\",\n  \"Nirnoy\": \"N\",\n  \"DIROP\": \"N\",\n  \"OTDtlYN\": \"Y\",\n  \"dcareeditYN\": \"N\",\n  \"otherchargeheadingyn\": \"N\",\n  \"tpaotherchargeyn\": \"N\",\n  \"backdateentryyn\": \"Y\",\n  \"fbillc\": \"Y\",\n  \"bedcal\": \"Y\",\n  \"admineditamtchange\": \"N\",\n  \"MedAdv\": \"N\",\n  \"DisFinalBill\": \"Y\",\n  \"MRD\": \"N\",\n  \"fbillprint\": \"Y\",\n  \"pbedcal\": \"Y\",\n  \"PtntNameYN\": \"Y\",\n  \"sdatewisebed\": \"Y\",\n  \"IndrDBName\": \"HOSPITAL_DBhh\",\n  \"monthwiseadmno\": \"Y\",\n  \"NoRec\": \"N\",\n  \"MaxCashRec\": 841460,\n  \"RefundRecYN\": \"Y\",\n  \"GSTP\": 18,\n  \"HealthCardP\": 5\n}"
+				},
+				"url": {
+					"raw": "https://xrk77z9r-5000.inc1.devtunnels.ms/api/v1/parameters",
+					"protocol": "https",
+					"host": [
+						"xrk77z9r-5000",
+						"inc1",
+						"devtunnels",
+						"ms"
+					],
+					"path": [
+						"api",
+						"v1",
+						"parameters"
+					]
+				}
+			}
+		},
+		{
+			"name": "GET Specific Parameter",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1NDg5ODg1MywiZXhwIjoyNTEyMjgxMjUzfQ.QeHkKyameExcGYkUlP7MwoQIPDplAjNGF3NZCSRMqIw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://xrk77z9r-5000.inc1.devtunnels.ms/api/v1/parameters/GSTP",
+					"protocol": "https",
+					"host": [
+						"xrk77z9r-5000",
+						"inc1",
+						"devtunnels",
+						"ms"
+					],
+					"path": [
+						"api",
+						"v1",
+						"parameters",
+						"GSTP"
+					]
+				}
+			}
+		},
+		{
+			"name": "UPDATE Specific Parameter",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1NDg5ODg1MywiZXhwIjoyNTEyMjgxMjUzfQ.QeHkKyameExcGYkUlP7MwoQIPDplAjNGF3NZCSRMqIw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"value\": 18\n}"
+				},
+				"url": {
+					"raw": "https://xrk77z9r-5000.inc1.devtunnels.ms/api/v1/parameters/GSTP",
+					"protocol": "https",
+					"host": [
+						"xrk77z9r-5000",
+						"inc1",
+						"devtunnels",
+						"ms"
+					],
+					"path": [
+						"api",
+						"v1",
+						"parameters",
+						"GSTP"
+					]
+				}
+			}
+		}
+	]
+}

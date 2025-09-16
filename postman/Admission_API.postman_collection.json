@@ -1,0 +1,163 @@
+{
+  "info": {
+    "name": "Admission API",
+    "description": "Complete CRUD operations for Admission table with all 93 fields",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://xrk77z9r-5000.inc1.devtunnels.ms/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1NDg5ODg1MywiZXhwIjoyNTEyMjgxMjUzfQ.QeHkKyameExcGYkUlP7MwoQIPDplAjNGF3NZCSRMqIw",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Create Admission",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"AdmitionId\": \"ADM001\",\n  \"AdmitionNo\": \"ADM/2025/001\",\n  \"AdmitionDate\": \"2025-01-15\",\n  \"AdmitionTime\": \"10:30\",\n  \"BillTime\": \"10:35\",\n  \"OPD\": \"Y\",\n  \"OPDId\": \"OPD001\",\n  \"Booking\": \"N\",\n  \"BookingId\": \"\",\n  \"PatientName\": \"John Doe\",\n  \"Add1\": \"123 Main Street\",\n  \"Add2\": \"Apartment 4B\",\n  \"Add3\": \"Downtown\",\n  \"Age\": 35,\n  \"AgeType\": \"Y\",\n  \"Sex\": \"M\",\n  \"MStatus\": \"M\",\n  \"PhoneNo\": \"9876543210\",\n  \"AreaId\": 1,\n  \"ReligionId\": 1,\n  \"GurdianName\": \"Jane Doe\",\n  \"Relation\": \"Wife\",\n  \"RelativeName\": \"Jane Doe\",\n  \"RelativePhoneNo\": \"9876543211\",\n  \"Company\": \"N\",\n  \"CompanyId\": null,\n  \"DepartmentId\": 1,\n  \"BedId\": 101,\n  \"UCDoctor1Id\": 1,\n  \"UCDoctor2Id\": null,\n  \"UCDoctor3Id\": null,\n  \"DiseaseId\": 1,\n  \"RMOId\": 1,\n  \"Referral\": \"N\",\n  \"ReferralId\": null,\n  \"RefDoctorId\": null,\n  \"Package\": \"N\",\n  \"PackageId\": null,\n  \"PackageAmount\": null,\n  \"CashLess\": \"N\",\n  \"CashLessId\": null,\n  \"UserId\": 1,\n  \"Status\": \"A\",\n  \"Discharge\": \"N\",\n  \"AdmitionNo1\": \"\",\n  \"Rename\": \"\",\n  \"AdmType\": 1,\n  \"InsComp\": \"\",\n  \"DayCareYN\": \"N\",\n  \"BedRate\": 1500.00,\n  \"DayCareId\": null,\n  \"PatientId\": \"PAT001\",\n  \"Remarks\": \"Regular admission for treatment\",\n  \"SpRemarks\": \"No special requirements\",\n  \"IdentNo\": \"ID123456789\",\n  \"PolcNo\": \"\",\n  \"CCNNo\": \"\",\n  \"CardNo\": \"\",\n  \"PPN\": null,\n  \"BillDone\": \"N\",\n  \"Occupation\": \"Engineer\",\n  \"Passport\": \"\",\n  \"DietChartId\": null,\n  \"tpaper\": null,\n  \"PanNo\": \"ABCDE1234F\",\n  \"PackageCHK\": null,\n  \"nameemployer\": \"Tech Corp\",\n  \"refdate\": null,\n  \"Nameemp\": \"Tech Corp\",\n  \"empcode\": \"EMP001\",\n  \"RefDoctorId2\": null,\n  \"packagevalid\": null,\n  \"optdiagoinc\": null,\n  \"optmediinc\": null,\n  \"optotherchargeinc\": null,\n  \"Weight\": \"70\",\n  \"oprationdate\": null,\n  \"optime\": \"\",\n  \"AgeD\": 6,\n  \"AgeTypeD\": \"M\",\n  \"AgeN\": 15,\n  \"AgeTypeN\": \"D\",\n  \"URN\": \"URN123456\",\n  \"packagestart\": null,\n  \"AcGenLedCompany\": null,\n  \"optotinc\": null,\n  \"MEXECUTIVE\": 1,\n  \"PackageId2\": null,\n  \"PackageId3\": null,\n  \"PackageId4\": null,\n  \"PackageAmount2\": null,\n  \"PackageAmount3\": null,\n  \"PackageAmount4\": null\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/admission",
+          "host": ["{{baseUrl}}"],
+          "path": ["admission"]
+        }
+      }
+    },
+    {
+      "name": "2. Get All Admissions",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/admission?page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["admission"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Get Admission by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/admission/ADM001",
+          "host": ["{{baseUrl}}"],
+          "path": ["admission", "ADM001"]
+        }
+      }
+    },
+    {
+      "name": "4. Update Admission",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"PatientName\": \"John Doe Updated\",\n  \"Age\": 36,\n  \"PhoneNo\": \"9876543210\",\n  \"Remarks\": \"Updated remarks\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/admission/ADM001",
+          "host": ["{{baseUrl}}"],
+          "path": ["admission", "ADM001"]
+        }
+      }
+    },
+    {
+      "name": "5. Search Admissions",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/admission/search?q=John",
+          "host": ["{{baseUrl}}"],
+          "path": ["admission", "search"],
+          "query": [
+            {
+              "key": "q",
+              "value": "John"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "6. Delete Admission",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/admission/ADM001",
+          "host": ["{{baseUrl}}"],
+          "path": ["admission", "ADM001"]
+        }
+      }
+    }
+  ]
+}

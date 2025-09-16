@@ -1,0 +1,119 @@
+{
+  "info": {
+    "name": "AC General Ledger API",
+    "description": "API endpoints for managing AC General Ledger",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All AC General Ledgers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-genled?page=1&limit=10&search=",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-genled"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "search",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get AC Sub Groups Dropdown",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-genled/ac-subgroups-dropdown",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-genled", "ac-subgroups-dropdown"]
+        }
+      }
+    },
+    {
+      "name": "Get AC General Ledger by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-genled/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-genled", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create AC General Ledger",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Desc\": \"TEST LEDGER\",\n  \"ShortName\": \"TEST\",\n  \"AcType\": \"G\",\n  \"OpBalance\": 0,\n  \"Phone\": \"1234567890\",\n  \"EMail\": \"test@example.com\",\n  \"Address1\": \"Test Address 1\",\n  \"Address2\": \"Test Address 2\",\n  \"Address3\": \"Test Address 3\",\n  \"AcSubGrpId\": 1,\n  \"System\": \"Y\",\n  \"PartyType\": \"C\",\n  \"TDS\": 0,\n  \"IGST\": 0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-genled",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-genled"]
+        }
+      }
+    },
+    {
+      "name": "Update AC General Ledger",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Desc\": \"UPDATED TEST LEDGER\",\n  \"ShortName\": \"UPDATED\",\n  \"AcType\": \"P\",\n  \"OpBalance\": 1000,\n  \"Phone\": \"9876543210\",\n  \"EMail\": \"updated@example.com\",\n  \"Address1\": \"Updated Address 1\",\n  \"AcSubGrpId\": 1,\n  \"System\": \"N\",\n  \"PartyType\": \"S\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-genled/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-genled", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete AC General Ledger",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-genled/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-genled", "1"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ]
+}

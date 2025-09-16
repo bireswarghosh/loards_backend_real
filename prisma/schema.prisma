@@ -1,0 +1,4601 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  // url      = "mysql://root:@localhost:3306/lordop"
+
+  url      = "mysql://u404499168_appstrice:w4$op$DNDjH@193.203.184.212:3306/u404499168_lordsmainsoft"
+}
+
+model Package {
+  PackageId Int     @id
+  Package   String? @db.VarChar(255)
+  DescId    Int?
+  Rate      Float?
+  GSTAmt    Float?
+
+  @@map("package")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model PackInclude {
+  IncludeId   Int?
+  PackageId   Int?
+  IncHead     String? @db.VarChar(50)
+  IncHeadRate Float?
+
+  @@map("packinclude")
+  @@ignore
+}
+
+model ParameterIndoor {
+  id                   Int       @id @default(autoincrement())
+  DoctotVisitInBill    String?   @db.VarChar(1)
+  DoctotVisitInEst     String?   @db.VarChar(1)
+  AddServiceMed        String?   @db.VarChar(1)
+  ServiceMedPer        Float?
+  AddServiceDiag       String?   @db.VarChar(1)
+  ServiceDiagPer       Float?
+  ChkOutTime           String?   @db.VarChar(10)
+  FixedServiceBed      Float?
+  MedBillShow          String?   @db.VarChar(1)
+  AddServiceOT         String?   @db.VarChar(1)
+  StartDt              DateTime? @db.DateTime(0)
+  CopSCH               Float?
+  EditTime             String?   @db.Char(1)
+  MedAdd               String?   @db.Char(1)
+  AddSrvDr             String?   @db.Char(1)
+  CM                   String?   @db.Char(1)
+  COMM                 String?   @db.VarChar(1)
+  RecColl              String?   @db.VarChar(1)
+  FBYN                 String?   @db.VarChar(1)
+  SMoneyYN             String?   @db.VarChar(1)
+  AdmChkTime           String?   @db.VarChar(1)
+  GChkTime             String?   @db.VarChar(20)
+  MedP                 Float?
+  DagP                 Float?
+  AdmTime              String?   @db.VarChar(20)
+  DIRA                 String?   @db.VarChar(1)
+  DIRF                 String?   @db.VarChar(1)
+  DuplicateMR          String?   @db.VarChar(1)
+  Nirnoy               String?   @db.VarChar(1)
+  DIROP                String?   @db.VarChar(1)
+  OTDtlYN              String?   @db.VarChar(1)
+  dcareeditYN          String?   @db.VarChar(1)
+  otherchargeheadingyn String?   @db.VarChar(1)
+  tpaotherchargeyn     String?   @db.VarChar(1)
+  backdateentryyn      String?   @db.VarChar(1)
+  fbillc               String?   @db.VarChar(1)
+  bedcal               String?   @db.VarChar(1)
+  admineditamtchange   String?   @db.VarChar(1)
+  MedAdv               String?   @db.VarChar(1)
+  DisFinalBill         String?   @db.VarChar(1)
+  MRD                  String?   @db.VarChar(1)
+  fbillprint           String?   @db.VarChar(1)
+  pbedcal              String?   @db.VarChar(1)
+  PtntNameYN           String?   @db.VarChar(1)
+  sdatewisebed         String?   @db.VarChar(1)
+  IndrDBName           String?   @db.VarChar(100)
+  monthwiseadmno       String?   @db.VarChar(1)
+  NoRec                String?   @db.VarChar(1)
+  MaxCashRec           Float?
+  RefundRecYN          String?   @db.VarChar(1)
+  GSTP                 Float?
+  HealthCardP          Float?
+
+  @@map("paramiterindoor")
+}
+
+model depgroup {
+  DepGroupId Int     @id
+  DepGroup   String? @db.VarChar(50)
+  Anst       Float?
+  Assi       Float?
+  Sour       Float?
+
+  @@map("depgroup")
+}
+
+model DepartmentIndoor {
+  DepartmentId Int     @id
+  Department   String? @db.VarChar(50)
+  DepGroupId   Int?
+  MinAdv       Float?
+  MaxBalance   Float?
+  Referal      Float?
+  PSL          Int?
+  RateType     Int?
+
+  @@map("departmentindoor")
+}
+
+model BedMaster {
+  BedId        Int     @id @default(autoincrement())
+  Bed          String? @db.VarChar(20)
+  DepartmentId Int?
+  BedCh        Float?
+  AtttndantCh  Float?
+  TotalCh      Float?
+  ServiceCh    String? @db.VarChar(1)
+  ShowInFinal  String? @db.VarChar(1)
+  Vacant       String? @db.VarChar(1)
+  ShortName    String? @db.VarChar(10)
+  RMOCh        Float?
+  BP           Float?
+  RateEdit     Int?
+  GST          Int?
+
+  @@map("bedmaster")
+}
+
+model DayCare {
+  DayCareId Int     @id
+  DayCare   String? @db.VarChar(50)
+  Rate      Float?
+
+  @@map("daycare")
+}
+
+model OtMaster {
+  OtMasterId Int     @id
+  OtMaster   String? @db.VarChar(50)
+  Rate       Float?
+
+  @@map("otmaster")
+}
+
+model OtSlot {
+  OTSlotId   Int     @id
+  OtMasterId Int?
+  OTSlot     String? @db.VarChar(50)
+  Rate       Float?
+  DepGroupId Int?
+
+  @@map("otslot")
+}
+
+model OtType {
+  OtTypeId Int     @id
+  OtType   String? @db.VarChar(50)
+
+  @@map("ottype")
+}
+
+model OtCategory {
+  OtCategoryId Int     @id
+  OtCategory   String? @db.VarChar(50)
+
+  @@map("otcategory")
+}
+
+model OtItem {
+  OtItemId     Int     @id
+  OtItem       String? @db.VarChar(50)
+  OtCategoryId Int?
+  Rate         Float?
+  Unit         String? @db.VarChar(20)
+  ServiceChYN  String? @db.Char(1)
+
+  @@map("otitem")
+}
+
+model AcHead {
+  ACHeadId Int       @id @default(autoincrement())
+  ACHead   String?   @db.VarChar(40)
+  System   String?   @db.VarChar(1)
+  acGroups AcGroup[]
+
+  @@map("achead")
+}
+
+model AcGroup {
+  ACGroupId  Int        @id @default(autoincrement())
+  ACGroup    String?    @db.VarChar(40)
+  ACHeadId   Int?       @db.SmallInt
+  System     String?    @db.VarChar(1)
+  acHead     AcHead?    @relation(fields: [ACHeadId], references: [ACHeadId])
+  acSubGrps  AcSubGrp[]
+
+  @@map("acgroup")
+}
+
+model AcSubGrp {
+  AcSubGrpId Int      @id @default(autoincrement())
+  SubGrp     String?  @db.VarChar(50)
+  AcGroupId  Int?
+  system     String?  @db.VarChar(1)
+  LgrLike    String?  @db.Char(1)
+  acGroup    AcGroup? @relation(fields: [AcGroupId], references: [ACGroupId])
+
+  @@map("acsubgrp")
+}
+
+model AcGenLed {
+  DescId       Int       @id
+  Desc         String?   @db.VarChar(100)
+  ShortName    String?   @db.VarChar(20)
+  OpTYpe       String?   @db.VarChar(1)
+  OpBalance    Float?
+  AcType       String?   @db.VarChar(1)
+  Address1     String?   @db.VarChar(40)
+  Address2     String?   @db.VarChar(40)
+  Address3     String?   @db.VarChar(40)
+  Phone        String?   @db.VarChar(50)
+  ItPaNo       String?   @db.VarChar(40)
+  CSTNo        String?   @db.VarChar(40)
+  LSTNo        String?   @db.VarChar(40)
+  TDS          Float?
+  System       String?   @db.VarChar(1)
+  LDATE        DateTime? @db.DateTime(0)
+  IntId        String?   @db.VarChar(10)
+  PartyType    String?   @db.VarChar(1)
+  EMail        String?   @db.VarChar(50)
+  AcSubGrpId   Int?
+  EntType      String?   @db.Char(1)
+  BillFormatId Int?
+  VCode        String?   @db.VarChar(10)
+  SCode        String?   @db.VarChar(10)
+  IGST         Int?
+
+  @@map("acgenled")
+}
+
+model Cashless {
+  CashlessId      Int     @id
+  Cashless        String? @db.VarChar(50)
+  Add1            String? @db.VarChar(50)
+  Add2            String? @db.VarChar(50)
+  Phone           String? @db.VarChar(25)
+  Company         Int?
+  Add3            String? @db.VarChar(50)
+  emailid         String? @db.VarChar(50)
+  contactperson   String? @db.VarChar(50)
+  cPhone          String? @db.VarChar(25)
+  servicecharge   String? @db.VarChar(1)
+  AcGenLedCompany Int?
+
+  @@map("cashless")
+}
+
+model religion {
+  ReligionId Int     @id @default(autoincrement())
+  Religion   String? @db.VarChar(50)
+
+  @@map("religion")
+}
+
+model disease {
+  DiseaseId   Int     @id @default(autoincrement())
+  Disease     String? @db.VarChar(50)
+  Diseasecode String? @db.VarChar(20)
+
+  @@map("disease")
+}
+
+model cashpaymenthead {
+  CashPaymentHeadId Int     @id @default(autoincrement())
+  CashPaymentHead   String? @db.VarChar(50)
+  doctorId          Int?
+  doctorY           Int?
+
+  @@map("cashpaymenthead")
+}
+
+model dischargetemplate {
+  DischargeTemplateId Int     @id @default(autoincrement())
+  DischaregeHead      String? @db.VarChar(50)
+
+  @@map("dischargetemplate")
+}
+
+model appointment_booking_app_appointments {
+  id                              Int                                                   @id @default(autoincrement())
+  patient_id                      Int
+  doctor_id                       Int
+  appointment_type                appointment_booking_app_appointments_appointment_type
+  date                            DateTime                                              @db.Date
+  time                            String                                                @db.VarChar(10)
+  problem                         String?                                               @db.VarChar(255)
+  status                          appointment_booking_app_appointments_status?          @default(pending)
+  createdAt                       DateTime?                                             @default(now()) @db.DateTime(0)
+  updatedAt                       DateTime?                                             @default(now()) @db.DateTime(0)
+  cancel_reason                   String                                                @db.VarChar(500)
+  Reschedule_date                 DateTime?                                             @db.Date
+  Reschedule_time                 DateTime?                                             @db.Time(6)
+  video_call_link                 String?                                               @db.Text
+  video_room_id                   String?                                               @db.VarChar(255)
+  payment_method                  appointment_booking_app_appointments_payment_method?  @default(cash)
+  transaction_id                  String?                                               @db.VarChar(100)
+  booking_price                   Decimal?                                              @default(0.00) @db.Decimal(10, 2)
+  appointment_booking_app_patient AppointmentBookingAppPatient                          @relation(fields: [patient_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "appointment_booking_app_appointments_ibfk_1")
+  doctormaster                    doctormaster                                          @relation(fields: [doctor_id], references: [DoctorId], onDelete: Cascade, onUpdate: Restrict, map: "appointment_booking_app_appointments_ibfk_2")
+
+  @@index([doctor_id], map: "doctor_id")
+  @@index([patient_id], map: "patient_id")
+  @@map("appointment_booking_app_appointments")
+}
+
+model AppointmentBookingAppPatient {
+  id                                            Int                                             @id @default(autoincrement())
+  fullName                                      String                                          @db.VarChar(100)
+  email                                         String                                          @unique(map: "email") @db.VarChar(100)
+  mobileNo                                      String                                          @db.VarChar(15)
+  password                                      String                                          @db.VarChar(100)
+  createdAt                                     DateTime?                                       @default(now()) @db.DateTime(0)
+  updatedAt                                     DateTime?                                       @default(now()) @updatedAt @db.DateTime(0)
+  gender                                        String?                                         @db.VarChar(10)
+  bloodGroup                                    String?                                         @db.VarChar(5)
+  age                                           Int?
+  weight                                        Float?                                          @db.Float
+  appointment_booking_app_ambulance_pickup      appointment_booking_app_ambulance_pickup[]
+  appointment_booking_app_appointments          appointment_booking_app_appointments[]
+  appointment_booking_app_nursing_bookings      appointment_booking_app_nursing_bookings[]
+  packagePurchases                              PackagePurchase[]
+  appointment_booking_app_pickup                appointment_booking_app_pickup[]
+  appointment_booking_app_prescription_delivery appointment_booking_app_prescription_delivery[]
+
+  @@map("appointment_booking_app_patient")
+}
+
+model HealthPackage {
+  id                 Int               @id @default(autoincrement())
+  packageName        String            @db.VarChar(255)
+  packagePrice       Decimal           @db.Decimal(10, 2)
+  packageDescription String?           @db.Text
+  packageImage       String?           @db.VarChar(255)
+  isActive           Boolean?          @default(true)
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @default(now()) @updatedAt
+  purchases          PackagePurchase[]
+  services           PackageService[]
+
+  @@map("appointment_booking_app_health_packages")
+}
+
+model PackageService {
+  id                 Int           @id @default(autoincrement())
+  packageId          Int
+  serviceName        String        @db.VarChar(255)
+  serviceDescription String?       @db.Text
+  createdAt          DateTime      @default(now())
+  package            HealthPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+
+  @@index([packageId], map: "appointment_booking_app_package_services_packageId_fkey")
+  @@map("appointment_booking_app_package_services")
+}
+
+model PackagePurchase {
+  id             Int                          @id @default(autoincrement())
+  patientId      Int
+  packageId      Int
+  purchaseAmount Decimal                      @db.Decimal(10, 2)
+  paymentStatus  PaymentStatus                @default(pending)
+  paymentMethod  String?                      @db.VarChar(50)
+  transactionId  String?                      @db.VarChar(255)
+  purchaseDate   DateTime                     @default(now())
+  notes          String?                      @db.Text
+  package        HealthPackage                @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  patient        AppointmentBookingAppPatient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@index([packageId], map: "appointment_booking_app_package_purchases_packageId_fkey")
+  @@index([patientId], map: "appointment_booking_app_package_purchases_patientId_fkey")
+  @@map("appointment_booking_app_package_purchases")
+}
+
+model mexecutive {
+  MExecutiveId Int       @id @default(autoincrement())
+  MExecutive   String?   @db.VarChar(50)
+  Add1         String?   @db.VarChar(40)
+  Add2         String?   @db.VarChar(40)
+  Add3         String?   @db.VarChar(40)
+  Phone        String?   @db.VarChar(20)
+  referals     referal[]
+
+  @@map("mexecutive")
+}
+
+model referal {
+  ReferalId    Int         @id @default(autoincrement())
+  Referal      String?     @db.VarChar(50)
+  PhoneNo      String?     @db.VarChar(20)
+  MExecutiveId Int?
+  mexecutive   mexecutive? @relation(fields: [MExecutiveId], references: [MExecutiveId])
+
+  @@map("referal")
+}
+
+model patientregistration {
+  RegistrationId   String    @id @db.VarChar(20)
+  RegistrationNo   String?   @db.VarChar(20)
+  RegistrationDate DateTime? @db.DateTime(0)
+  RegistrationTime String?   @db.VarChar(10)
+  PatientName      String?   @db.VarChar(50)
+  Add1             String?   @db.VarChar(50)
+  Add2             String?   @db.VarChar(50)
+  Add3             String?   @db.VarChar(50)
+  Age              Float?
+  AgeType          String?   @db.Char(1)
+  Sex              String?   @db.Char(1)
+  MStatus          String?   @db.Char(1)
+  PhoneNo          String?   @db.VarChar(22)
+  AreaId           Int?
+  ReligionId       Int?
+  UserId           Int?
+  SpecialityId     Int?
+  DoctorId         Int?
+  RegCh            Float?
+  AdvAmt           Float?
+  Discount         Float?
+  TotAmount        Float?
+  BookingDate      DateTime? @db.DateTime(0)
+  BookingTime      String?   @db.VarChar(10)
+  cRegistrationNo  String?   @db.VarChar(50)
+  EMailId          String?   @db.VarChar(100)
+  PPr              String?   @db.VarChar(10)
+  CareOf           String?   @db.VarChar(10)
+  GurdianName      String?   @db.VarChar(200)
+  AgeD             Float?
+  AgeTypeD         String?   @db.Char(1)
+  AgeN             Float?
+  AgeTypeN         String?   @db.Char(1)
+  // !   this part  bireswar  new  add  here
+  Dob              DateTime? @db.DateTime(0)
+  Weight           Float?    @db.Float
+  Height           Float?    @db.Float
+  BloodGroup       String?   @db.VarChar(10)
+  bpmin            Float?    @db.Float
+  bpmax            Float?    @db.Float
+  
+  // One-to-Many Relationship: One patient can have multiple bills
+  outdoorbills     outdoorbillmst[]
+
+  @@map("patientregistration")
+}
+
+model outdoorbillmst {
+  OutBillId      String    @id @db.VarChar(20)
+  RegistrationId String?   @db.VarChar(20)
+  OutBillNo      String?   @db.VarChar(30)
+  OutBillDate    DateTime? @db.DateTime(0)
+  Amount         Float?
+  UserId         Int?
+  DoctorId       Int?
+  DiscAmt        Float?
+  GTotal         Float?
+  otbookdate     DateTime? @db.DateTime(0)
+  otbooktime     String?   @db.VarChar(20)
+  paidamt        Float?
+  dueamt         Float?
+  PaymentType    Int?
+  BANK           String?   @db.VarChar(70)
+  Cheque         String?   @db.VarChar(25)
+  CompanyId      Int?
+  m_CompanyId    Int?
+  refdoc         Int?
+  assdoc         Int?
+  ansdoc         Int?
+  department     Int?
+  narration      String?   @db.VarChar(250)
+  
+  // Billing Charges
+  RegCh          Float?    // Registration Charge
+  ProfCh         Float?    // Professional Charge
+  ServiceCh      Float?    // Service Charge
+  
+  // Discounts
+  Patient_Discount      Float?    // Patient Discount %
+  Professional_Discount Float?    // Professional Discount
+  Service_Discount      Float?    // Service Discount
+  
+  // Foreign Key Relationship
+  patientregistration patientregistration? @relation(fields: [RegistrationId], references: [RegistrationId])
+  
+  @@index([RegistrationId], map: "outdoorbillmst_RegistrationId_fkey")
+  @@map("outdoorbillmst")
+}
+
+model admition {
+  AdmitionId        String    @id @db.VarChar(20)
+  AdmitionNo        String?   @db.VarChar(20)
+  AdmitionDate      DateTime? @db.DateTime(0)
+  AdmitionTime      String?   @db.VarChar(10)
+  BillTime          String?   @db.VarChar(10)
+  OPD               String?   @db.Char(1)
+  OPDId             String?   @db.VarChar(20)
+  Booking           String?   @db.Char(1)
+  BookingId         String?   @db.VarChar(50)
+  PatientName       String?   @db.VarChar(50)
+  Add1              String?   @db.VarChar(500)
+  Add2              String?   @db.VarChar(50)
+  Add3              String?   @db.VarChar(50)
+  Age               Float?
+  AgeType           String?   @db.Char(1)
+  Sex               String?   @db.Char(1)
+  MStatus           String?   @db.Char(1)
+  PhoneNo           String?   @db.VarChar(22)
+  AreaId            Int?
+  ReligionId        Int?
+  GurdianName       String?   @db.VarChar(50)
+  Relation          String?   @db.VarChar(50)
+  RelativeName      String?   @db.VarChar(50)
+  RelativePhoneNo   String?   @db.VarChar(22)
+  Company           String?   @db.Char(1)
+  CompanyId         Int?
+  DepartmentId      Int?
+  BedId             Int?
+  UCDoctor1Id       Int?
+  UCDoctor2Id       Int?
+  UCDoctor3Id       Int?
+  DiseaseId         Int?
+  RMOId             Int?
+  Referral          String?   @db.Char(1)
+  ReferralId        Int?
+  RefDoctorId       Int?
+  Package           String?   @db.Char(1)
+  PackageId         Int?
+  PackageAmount     Float?
+  CashLess          String?   @db.Char(1)
+  CashLessId        Int?
+  UserId            Int?
+  Status            String?   @db.Char(1)
+  Discharge         String?   @db.Char(1)
+  AdmitionNo1       String?   @db.VarChar(20)
+  Rename            String?   @db.VarChar(1)
+  AdmType           Int?
+  InsComp           String?   @db.VarChar(50)
+  DayCareYN         String?   @db.VarChar(1)
+  BedRate           Float?
+  DayCareId         Int?
+  PatientId         String?   @db.VarChar(12)
+  Remarks           String?   @db.VarChar(200)
+  SpRemarks         String?   @db.VarChar(200)
+  IdentNo           String?   @db.VarChar(100)
+  PolcNo            String?   @db.VarChar(50)
+  CCNNo             String?   @db.VarChar(50)
+  CardNo            String?   @db.VarChar(50)
+  PPN               Int?
+  BillDone          String?   @db.VarChar(1)
+  Occupation        String?   @db.VarChar(60)
+  Passport          String?   @db.VarChar(60)
+  DietChartId       Int?
+  tpaper            Int?
+  PanNo             String?   @db.VarChar(20)
+  PackageCHK        Int?
+  nameemployer      String?   @db.VarChar(50)
+  refdate           DateTime? @db.DateTime(0)
+  Nameemp           String?   @db.VarChar(50)
+  empcode           String?   @db.VarChar(50)
+  RefDoctorId2      Int?
+  packagevalid      DateTime? @db.DateTime(0)
+  optdiagoinc       Int?
+  optmediinc        Int?
+  optotherchargeinc Int?
+  Weight            String?   @db.VarChar(6)
+  oprationdate      DateTime? @db.DateTime(0)
+  optime            String?   @db.VarChar(20)
+  AgeD              Float?
+  AgeTypeD          String?   @db.Char(1)
+  AgeN              Float?
+  AgeTypeN          String?   @db.Char(1)
+  URN               String?   @db.VarChar(60)
+  packagestart      DateTime? @db.DateTime(0)
+  AcGenLedCompany   Int?
+  optotinc          Int?
+  MEXECUTIVE        Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model admitionbed {
+  SlNo         Int?
+  AdmitionId   String?   @db.VarChar(20)
+  BedId        Int?
+  AdmitionDate DateTime? @db.DateTime(0)
+  ReleaseDate  DateTime? @db.DateTime(0)
+  Release      String?   @db.Char(1)
+  AdmitionTime String?   @db.VarChar(10)
+  ReleaseTime  String?   @db.VarChar(10)
+  ToDayRate    Float?
+  Rate         Float?
+  Userid       Int?
+  RMOCh        Float?
+  AtttndantCh  Float?
+  packagevalid DateTime? @db.DateTime(0)
+  packagestart DateTime? @db.DateTime(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model admitionotherscharg {
+  AdmitionId     String?   @db.VarChar(20)
+  OtherChargesId Int?
+  Qty            Float?
+  Rate           Float?
+  Amount         Float?
+  EDate          DateTime? @db.DateTime(0)
+  UserId         Int?
+  Remarks        String?   @db.VarChar(100)
+  Package        String?   @db.VarChar(1)
+  DoctorId       Int?
+  cgstp          Float?
+  cgst           Float?
+  sgstp          Float?
+  sgst           Float?
+
+  @@ignore
+}
+
+model advice {
+  AdviceId Int     @id
+  Advice   String? @db.VarChar(50)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model advmeddtl {
+  RegistrationId String? @db.VarChar(20)
+  VisitId        Int?
+  advmed         String? @db.VarChar(250)
+  dose           String? @db.VarChar(250)
+  dunit          String? @db.VarChar(250)
+  nodays         String? @db.VarChar(250)
+  SlNo           Int?
+  admissionid    String? @db.VarChar(20)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model agent {
+  AgentId        Int?
+  Agent          String? @db.VarChar(50)
+  Add1           String? @db.VarChar(40)
+  Add2           String? @db.VarChar(40)
+  Add3           String? @db.VarChar(40)
+  Phone          String? @db.VarChar(20)
+  Commission     String? @db.VarChar(1)
+  MExecutiveId   Int?
+  ShortName      String? @db.VarChar(50)
+  CompanyId      Int?
+  CompanyYN      String? @db.VarChar(1)
+  OPBal          Float?
+  IsDiscountable Int?
+  CrLimit        Float?
+  EmailId        String? @db.VarChar(150)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model agentbusn {
+  AgentBusnId   String?   @db.VarChar(20)
+  AgentBusnNo   String?   @db.VarChar(20)
+  AgentId       Int?
+  AgentBusnDate DateTime? @db.DateTime(0)
+  Amt           Float?
+  TrnType       Int?
+  UserId        Int?
+  Narration     String?   @db.VarChar(100)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model agentcommissiomdtl {
+  AgentId        Int?
+  CommissionDate DateTime? @db.DateTime(0)
+  CaseId         String?   @db.VarChar(12)
+  TestId         Int?
+  Amount         Float?
+
+  @@ignore
+}
+
+model agentpayment {
+  PaymentId String    @id @db.VarChar(12)
+  PaymentNo String?   @db.VarChar(12)
+  AgentId   Int?
+  PayDate   DateTime? @db.DateTime(0)
+  Amount    Float?
+  UserId    Int?
+  Discount  Float?
+}
+
+model appointment_booking_app_ambulance {
+  id                                       Int                                        @id @default(autoincrement())
+  name                                     String                                     @db.VarChar(100)
+  logo                                     String?                                    @db.VarChar(255)
+  createdAt                                DateTime?                                  @default(now()) @db.DateTime(0)
+  updatedAt                                DateTime?                                  @default(now()) @db.DateTime(0)
+  appointment_booking_app_ambulance_pickup appointment_booking_app_ambulance_pickup[]
+}
+
+model appointment_booking_app_ambulance_pickup {
+  id                                Int                                              @id @default(autoincrement())
+  ambulance_id                      Int
+  pickup_area                       String                                           @db.VarChar(100)
+  pickup_address                    String                                           @db.VarChar(255)
+  destination_area                  String                                           @db.VarChar(100)
+  destination_address               String                                           @db.VarChar(255)
+  name                              String                                           @db.VarChar(100)
+  phone_number                      String                                           @db.VarChar(20)
+  status                            appointment_booking_app_ambulance_pickup_status? @default(pending)
+  createdAt                         DateTime?                                        @default(now()) @db.DateTime(0)
+  updatedAt                         DateTime?                                        @default(now()) @db.DateTime(0)
+  patient_id                        Int?
+  appointment_booking_app_ambulance appointment_booking_app_ambulance                @relation(fields: [ambulance_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "appointment_booking_app_ambulance_pickup_ibfk_1")
+  appointment_booking_app_patient   AppointmentBookingAppPatient?                    @relation(fields: [patient_id], references: [id], onUpdate: Restrict, map: "fk_patient")
+
+  @@index([ambulance_id], map: "ambulance_id")
+  @@index([patient_id], map: "fk_patient")
+}
+
+model appointment_booking_app_doctor {
+  id         Int       @id @default(autoincrement())
+  doctorName String    @db.VarChar(100)
+  email      String    @unique(map: "email") @db.VarChar(100)
+  phone      String    @db.VarChar(15)
+  password   String    @db.VarChar(255)
+  speciality String?   @db.VarChar(100)
+  createdAt  DateTime? @default(now()) @db.DateTime(0)
+  updatedAt  DateTime? @default(now()) @db.DateTime(0)
+}
+
+model appointment_booking_app_nursing_bookings {
+  id                                       Int                                                       @id @default(autoincrement())
+  nursing_package_id                       Int
+  patient_id                               Int?
+  admition_id                              String?                                                   @db.VarChar(50)
+  start_date                               DateTime                                                  @db.Date
+  end_date                                 DateTime                                                  @db.Date
+  existing_patient                         appointment_booking_app_nursing_bookings_existing_patient
+  patient_name                             String?                                                   @db.VarChar(100)
+  phone_number                             String?                                                   @db.VarChar(20)
+  email                                    String?                                                   @db.VarChar(100)
+  gender                                   appointment_booking_app_nursing_bookings_gender?
+  age                                      Int?
+  address                                  String?                                                   @db.Text
+  status                                   appointment_booking_app_nursing_bookings_status?          @default(pending)
+  createdAt                                DateTime?                                                 @default(now()) @db.DateTime(0)
+  updatedAt                                DateTime?                                                 @default(now()) @db.DateTime(0)
+  advance_booking                          Decimal?                                                  @default(0.00) @db.Decimal(10, 2)
+  transaction_id                           String?                                                   @db.VarChar(100)
+  appointment_booking_app_nursing_packages appointment_booking_app_nursing_packages                  @relation(fields: [nursing_package_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "appointment_booking_app_nursing_bookings_ibfk_1")
+  appointment_booking_app_patient          AppointmentBookingAppPatient?                             @relation(fields: [patient_id], references: [id], onUpdate: Restrict, map: "appointment_booking_app_nursing_bookings_ibfk_2")
+
+  @@index([nursing_package_id], map: "nursing_package_id")
+  @@index([patient_id], map: "patient_id")
+}
+
+model appointment_booking_app_nursing_category {
+  id                                       Int                                        @id @default(autoincrement())
+  name                                     String                                     @db.VarChar(100)
+  logo                                     String?                                    @db.VarChar(255)
+  createdAt                                DateTime?                                  @default(now()) @db.DateTime(0)
+  updatedAt                                DateTime?                                  @default(now()) @db.DateTime(0)
+  appointment_booking_app_nursing_packages appointment_booking_app_nursing_packages[]
+}
+
+model appointment_booking_app_nursing_packages {
+  id                                       Int                                        @id @default(autoincrement())
+  nursing_category_id                      Int
+  package_name                             String                                     @db.VarChar(100)
+  duration                                 String                                     @db.VarChar(50)
+  price                                    Decimal?                                   @db.Decimal(10, 2)
+  description                              String?                                    @db.Text
+  createdAt                                DateTime?                                  @default(now()) @db.DateTime(0)
+  updatedAt                                DateTime?                                  @default(now()) @db.DateTime(0)
+  service_type                             String?                                    @db.VarChar(100)
+  overview_points                          String?                                    @db.LongText
+  advance_booking_price                    Decimal?                                   @default(0.00) @db.Decimal(10, 2)
+  appointment_booking_app_nursing_bookings appointment_booking_app_nursing_bookings[]
+  appointment_booking_app_nursing_category appointment_booking_app_nursing_category   @relation(fields: [nursing_category_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "appointment_booking_app_nursing_packages_ibfk_1")
+
+  @@index([nursing_category_id], map: "nursing_category_id")
+}
+
+model appointment_booking_app_pickup {
+  id                              Int                           @id @default(autoincrement())
+  name                            String                        @db.VarChar(100)
+  phone                           String                        @db.VarChar(20)
+  pickupArea                      String                        @db.VarChar(255)
+  pickupLandmark                  String?                       @db.VarChar(255)
+  destinationArea                 String                        @db.VarChar(255)
+  destinationLandmark             String?                       @db.VarChar(255)
+  createdAt                       DateTime?                     @default(now()) @db.DateTime(0)
+  updatedAt                       DateTime?                     @default(now()) @db.DateTime(0)
+  patient_id                      Int?
+  ambulance_id                    Int?
+  appointment_booking_app_patient AppointmentBookingAppPatient? @relation(fields: [patient_id], references: [id], onUpdate: Restrict, map: "fk_patient_pickup")
+
+  @@index([patient_id], map: "fk_patient_pickup")
+}
+
+model appointment_booking_app_prescription_delivery {
+  id                              Int                                                          @id @default(autoincrement())
+  patient_id                      Int
+  name                            String                                                       @db.VarChar(100)
+  phone_number                    String                                                       @db.VarChar(20)
+  prescription_image              String?                                                      @db.VarChar(255)
+  delivery_type                   appointment_booking_app_prescription_delivery_delivery_type? @default(home_delivery)
+  home_delivery_location          String?                                                      @db.VarChar(255)
+  home_delivery_address           String?                                                      @db.Text
+  status                          appointment_booking_app_prescription_delivery_status?        @default(pending)
+  createdAt                       DateTime?                                                    @default(now()) @db.DateTime(0)
+  updatedAt                       DateTime?                                                    @default(now()) @db.DateTime(0)
+  appointment_booking_app_patient AppointmentBookingAppPatient                                 @relation(fields: [patient_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "appointment_booking_app_prescription_delivery_ibfk_1")
+
+  @@index([patient_id], map: "patient_id")
+}
+
+model area {
+  AreaId Int     @id
+  Area   String? @db.VarChar(50)
+  ZoneId Int?
+  Rate   Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt01 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt02 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt03 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt04 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt05 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt06 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt07 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt08 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt09 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt10 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt11 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt12 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt13 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt14 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt15 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model atcbdt17 {
+  DtlId      String?   @db.VarChar(20)
+  HeadId     String?   @db.VarChar(20)
+  Type       String?   @db.VarChar(1)
+  VoucherNo  String?   @db.VarChar(20)
+  VoucherDt  DateTime? @db.DateTime(0)
+  VoucherTm  DateTime? @db.DateTime(0)
+  DescId     String?   @db.VarChar(20)
+  Pref       String?   @db.VarChar(3)
+  DrCr       String?   @db.VarChar(1)
+  Amt        Decimal?  @db.Decimal(19, 4)
+  DivCode    String?   @db.VarChar(4)
+  ChequeNo   String?   @db.VarChar(8)
+  ChequeDt   DateTime? @db.DateTime(0)
+  ChqClearDt DateTime? @db.DateTime(0)
+  RefType    String?   @db.VarChar(2)
+  RefIntNo   Int?
+  Narration  String?   @db.VarChar(150)
+  PaidRecd   String?   @db.VarChar(60)
+  LDATE      DateTime? @db.DateTime(0)
+  LTIME      DateTime? @db.DateTime(0)
+  PaidBank   String?   @db.VarChar(60)
+  OtherId    Int?
+
+  @@ignore
+}
+
+model atcbhd01 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd02 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd03 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd04 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd05 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd06 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd07 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd08 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd09 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd10 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd11 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd12 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd13 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd14 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd15 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+model atcbhd17 {
+  HeadId    String    @id @db.VarChar(20)
+  TType     String?   @db.VarChar(1)
+  VoucherNo String?   @db.VarChar(20)
+  VoucherDt DateTime? @db.DateTime(0)
+  Amt       Float?
+  DC        String?   @db.VarChar(1)
+  DescId    String?   @db.VarChar(20)
+  Pref      String?   @db.VarChar(3)
+  RefType   String?   @db.VarChar(2)
+  ReffId    String?   @db.VarChar(12)
+  LDATE     DateTime? @db.DateTime(0)
+  LTIME     DateTime? @db.DateTime(0)
+  CuteDall  String?   @db.VarChar(1)
+  Narration String?   @db.VarChar(100)
+  IntNo     Int?
+  lslno     BigInt?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model authentication {
+  UserId               Int
+  UserName             String? @db.VarChar(20)
+  Password             String? @db.VarChar(40)
+  frm                  String? @db.VarChar(50)
+  Active               String? @db.Char(1)
+  Admin                Int?
+  pathologistsignature String? @db.VarChar(100)
+  UserRoleId           Int     @default(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model autodiscount {
+  discount1 Float?
+  discount2 Float?
+  discount3 Float?
+  discount4 Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model barcodeseq {
+  Id           BigInt
+  SampleTypeId String? @db.VarChar(50)
+  LastId       BigInt?
+  CentreCode   String? @db.VarChar(50)
+
+  @@ignore
+}
+
+model batch {
+  BatchId Int       @id
+  Batch   String?   @db.VarChar(20)
+  ItemId  Int?
+  ExpDate DateTime? @db.DateTime(0)
+  MRP     Float?
+  EYN     Int?
+  EPrise  Float?
+  BKP     Int?
+  prate   Float?
+  saleYN  String?   @db.VarChar(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bedoccustatus {
+  PrintDt    DateTime? @db.DateTime(0)
+  BedId      Int?
+  DepId      Int?
+  AdmitionId String?   @db.VarChar(12)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model billdtl01 {
+  BIllId    String?   @db.VarChar(12)
+  ItemId    Int?
+  Unit      String?   @db.VarChar(12)
+  GodownId  Int?
+  BatchId   Int?
+  ExpDate   DateTime? @db.DateTime(0)
+  Qty       Float?
+  Free      Float?
+  Rate      Float?
+  VatP      Float?
+  Vat       Float?
+  TotalAmt  Float?
+  UserId    Int?
+  MRP       Float?
+  CSTP      Float?
+  CSTAmt    Float?
+  PackId    Int?
+  ED        Float?
+  DiscP     Float?
+  PRTotal   Float?
+  DiscAmt   Float?
+  LPRate    Float?
+  FreeValue Float?
+  NRate     Float?
+  sdisc     Float?
+  sdiscamt  Float?
+  slno      Int?
+  IGSTP     Float?
+  IGSTAMT   Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model billformatmaster {
+  BillFormatId Int?
+  BillFormat   String? @db.VarChar(50)
+
+  @@ignore
+}
+
+model billmaster01 {
+  BIllId       String    @id @db.VarChar(12)
+  BillDate     DateTime? @db.DateTime(0)
+  BillNo       String?   @db.VarChar(50)
+  DescId       Float?
+  Party        String?   @db.VarChar(60)
+  Discount     Float?
+  RoundOff     Float?
+  NetAmt       Float?
+  DateFrom     DateTime? @db.DateTime(0)
+  DateTo       DateTime? @db.DateTime(0)
+  Narration    String?   @db.LongText
+  DiscP        Float?
+  TaxType      Int?
+  TaxP         Float?
+  VatAmt       Float?
+  BillType     String?   @db.Char(1)
+  PType        Int?
+  UserId       Int?
+  DepType      String?   @db.VarChar(1)
+  SlipNo       String?   @db.VarChar(20)
+  ChallanYN    String?   @db.VarChar(1)
+  VatType      Int?
+  CompBillType Int?
+  SubCompanyId Int?
+  BillFormatId Int?
+  Doctor       String?   @db.VarChar(40)
+  Address      String?   @db.VarChar(40)
+  Replace      String?   @db.VarChar(1)
+  KP           String?   @db.VarChar(1)
+  ROT          Float?
+  MDr          String?   @db.VarChar(50)
+  RBillNo      String?   @db.VarChar(50)
+  OPDId        String?   @db.VarChar(12)
+  PaymentType  Int?
+  Remarks      String?   @db.VarChar(200)
+  ReturnNo     String?   @db.VarChar(20)
+  ReturnAmt    Float?
+  TotFreeValue Float?
+  SGST         Float?
+  CGST         Float?
+  PPhNo        String?   @db.VarChar(20)
+  DPhNo        String?   @db.VarChar(20)
+  DAdd         String?   @db.VarChar(100)
+  CreditCO     String?   @db.VarChar(100)
+  poYN         String?   @db.VarChar(1)
+  po           String?   @db.VarChar(40)
+  curDate      DateTime? @db.DateTime(0)
+  OPDId1       String?   @db.VarChar(12)
+  pbillno      String?   @db.VarChar(50)
+  Age          Float?
+  AgeType      String?   @db.Char(1)
+  Sex          String?   @db.Char(1)
+  autodiscYN   String?   @db.VarChar(1)
+  OUTSIDER     Int?
+  FRecDt       DateTime? @db.DateTime(0)
+  FRecAmt      Float?
+  SRecDt       DateTime? @db.DateTime(0)
+  SRecAmt      Float?
+  DueRecUser   Int?
+}
+
+model billprinthead {
+  BillPrintHeadId Int     @id @default(autoincrement())
+  BillPrintHead   String? @db.VarChar(50)
+  Slno            Int?
+}
+
+model billreffr01 {
+  ReffId   String    @id @db.VarChar(12)
+  BIllId   String?   @db.VarChar(20)
+  HeadId   String?   @db.VarChar(20)
+  Amt      Float?
+  AdjDate  DateTime? @db.DateTime(0)
+  BillType Float?
+}
+
+model biochemistry {
+  BloodIdd            String    @id @db.VarChar(12)
+  PatientName         String?   @db.VarChar(50)
+  CaseId              String?   @db.VarChar(12)
+  CaseNo              String?   @db.VarChar(12)
+  LabId               String?   @db.VarChar(12)
+  ReportDt            DateTime? @db.DateTime(0)
+  PathologistId1      Int?
+  PathologistId2      Int?
+  PathologistId3      Int?
+  GlucoseF            Float?
+  GlucoseFUnit        String?   @db.VarChar(10)
+  GlucoseR            Float?
+  GlucoseRFUnit       String?   @db.VarChar(10)
+  GlucosePP           Float?
+  GlucosePPUnit       String?   @db.VarChar(10)
+  HbA1c               Float?
+  HbA1cUnit           String?   @db.VarChar(10)
+  BUN                 Float?
+  BUNUnit             String?   @db.VarChar(10)
+  Urea                Float?
+  UreaUnit            String?   @db.VarChar(10)
+  Creatinine          Float?
+  CreatinineUnit      String?   @db.VarChar(10)
+  UricAcid            Float?
+  UricAcidUnit        String?   @db.VarChar(10)
+  BilirubinTotal      Float?
+  BilirubinTotalUnit  String?   @db.VarChar(10)
+  BilirubinConj       Float?
+  BilirubinConjUnit   String?   @db.VarChar(10)
+  Unconjugated        Float?
+  UnconjugatedUnit    String?   @db.VarChar(10)
+  SGOTAST             Float?
+  SGOTASTUnit         String?   @db.VarChar(10)
+  SGPTALT             Float?
+  SGPTALTUnit         String?   @db.VarChar(10)
+  ALP                 Float?
+  ALPUnit             String?   @db.VarChar(10)
+  TotalProtein        Float?
+  TotalProteinUnit    String?   @db.VarChar(10)
+  Albumin             Float?
+  AlbuminUnit         String?   @db.VarChar(10)
+  Globulin            Float?
+  GlobulinUnit        String?   @db.VarChar(10)
+  AGRatio             Float?
+  AGRatioUnit         String?   @db.VarChar(10)
+  GGT                 Float?
+  GGTUnit             String?   @db.VarChar(10)
+  Lipase              Float?
+  LipaseUnit          String?   @db.VarChar(10)
+  Amylase             Float?
+  AmylaseUnit         String?   @db.VarChar(10)
+  Phenytoin           Float?
+  PhenytoinUnit       String?   @db.VarChar(10)
+  SerumOsmolality     Float?
+  SerumOsmolalityUnit String?   @db.VarChar(10)
+  Cholesterol         Float?
+  CholesterolUnit     String?   @db.VarChar(10)
+  HDL                 Float?
+  HDLUnit             String?   @db.VarChar(10)
+  LDL                 Float?
+  LDLUnit             String?   @db.VarChar(10)
+  VLDL                Float?
+  VLDLUnit            String?   @db.VarChar(10)
+  CholHDL             Float?
+  CholHDLUnit         String?   @db.VarChar(10)
+  Trilyceride         Float?
+  TrilycerideUnit     String?   @db.VarChar(10)
+  Calcium             Float?
+  CalciumUnit         String?   @db.VarChar(10)
+  Phosphate           Float?
+  PhosphateUnit       String?   @db.VarChar(10)
+  Magnesium           Float?
+  MagnesiumUnit       String?   @db.VarChar(10)
+  Sodium              Float?
+  SodiumUnit          String?   @db.VarChar(10)
+  Potassiums          Float?
+  potassiumsUnit      String?   @db.VarChar(10)
+  Chloride            Float?
+  ChlorideUnit        String?   @db.VarChar(10)
+  Bicarbonate         Float?
+  BicarbonateUnit     String?   @db.VarChar(10)
+  CPK                 Float?
+  CPKUnit             String?   @db.VarChar(10)
+  CPKMB               Float?
+  CPKMBUnit           String?   @db.VarChar(10)
+  LDH                 Float?
+  LDHUnit             String?   @db.VarChar(10)
+  Iron                Float?
+  IronUnit            String?   @db.VarChar(10)
+  TIBC                Float?
+  TIBCUnit            String?   @db.VarChar(10)
+  Ammonia             Float?
+  AmmoniaUnit         String?   @db.VarChar(10)
+  Lactate             Float?
+  LactateUnit         String?   @db.VarChar(10)
+  ACPTotal            Float?
+  ACPTotalUnit        String?   @db.VarChar(10)
+  ACPProstatic        Float?
+  ACPProstaticUnit    String?   @db.VarChar(10)
+}
+
+model birthcer {
+  BirthCerId    String    @id @db.VarChar(20)
+  BirthCerNo    String?   @db.VarChar(20)
+  BirthTime     String?   @db.VarChar(10)
+  BirthCerDate  DateTime? @db.DateTime(0)
+  AdmitionId    String?   @db.VarChar(20)
+  DischargeDate DateTime? @db.DateTime(0)
+  Father        String?   @db.VarChar(50)
+  BirthDate     DateTime? @db.DateTime(0)
+  BirthNature   String?   @db.VarChar(250)
+  Sex           String?   @db.Char(1)
+  Weight        String?   @db.VarChar(6)
+  DoctorId      Int?
+  TwinBaby      Int?
+}
+
+model bloodformat {
+  BloodId               String    @id @db.VarChar(12)
+  CaseId                String?   @db.VarChar(12)
+  ReportDt              DateTime? @db.DateTime(0)
+  PathologistId1        Int?
+  PathologistId2        Int?
+  PathologistId3        Int?
+  Himoglobin1           Float?
+  Himoglobin2           Float?
+  Himoglobin3           Float?
+  Erythrocytes          Float?
+  ErythrocytesUnit      String?   @db.VarChar(15)
+  Leucocytes            Float?
+  LeucocytesUnit        String?   @db.VarChar(15)
+  Neutrophils           Float?
+  Lymphocytes           Float?
+  Monocytes             Float?
+  Eosinophils           Float?
+  Basophils             Float?
+  AbnCell1              String?   @db.VarChar(25)
+  AbnCell1Val           Float?
+  AbnCell2              String?   @db.VarChar(25)
+  AbnCell2Val           Float?
+  AbnCell3              String?   @db.VarChar(25)
+  AbnCell3Val           Float?
+  AbnCell4              String?   @db.VarChar(25)
+  AbnCell4Val           Float?
+  SemearStudy1          String?   @db.VarChar(250)
+  SemearStudy2          String?   @db.VarChar(250)
+  SemearStudy3          String?   @db.VarChar(250)
+  StHrsCount            Float?    @map("1StHrsCount")
+  ndHrsCount            Float?    @map("2ndHrsCount")
+  MeanESR               Float?
+  PCV                   Float?
+  PCVUnit               String?   @db.VarChar(15)
+  MCV                   Float?
+  MCVUnit               String?   @db.VarChar(15)
+  MCH                   Float?
+  MCHUnit               String?   @db.VarChar(15)
+  MCHC                  Float?
+  MCHCUnit              String?   @db.VarChar(15)
+  RDW                   Float?
+  RDWUnit               String?   @db.VarChar(15)
+  PalletsCount          Float?
+  ReticulocyCount       Float?
+  MaleriaParasite       String?   @db.VarChar(250)
+  BleedTimeMin          Float?
+  BleedTimeSec          Float?
+  CoagulMin             Float?
+  CoagulSec             Float?
+  Remarks               String?   @db.VarChar(250)
+  PalateCountUnit       String?   @db.VarChar(15)
+  LabId                 String?   @db.VarChar(20)
+  AbnCell5              String?   @db.VarChar(50)
+  AbnCell5Val           Float?
+  AbnCell6              String?   @db.VarChar(50)
+  AbnCell6Val           Float?
+  AdEosCount            Float?
+  NucleatedRBC          Float?
+  NucleatedRBCUnit      String?   @db.VarChar(50)
+  CorrectedWBCCount     Float?
+  CorrectedWBCCountUnit String?   @db.VarChar(50)
+  ReportTime            String?   @db.VarChar(15)
+  BloodGroup            String?   @db.VarChar(15)
+  RHType                String?   @db.VarChar(15)
+  PDW                   Float?
+  PDWUnit               String?   @db.VarChar(15)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bloodformatlisvalue {
+  CaseId   String? @db.VarChar(12)
+  TestName String? @db.VarChar(200)
+  LISValue String? @db.VarChar(50)
+
+  @@ignore
+}
+
+model bodyfluid01 {
+  BodyFluid          String    @id @db.VarChar(12)
+  PatientName        String?   @db.VarChar(50)
+  CaseId             String?   @db.VarChar(12)
+  CaseNo             String?   @db.VarChar(12)
+  LabId              String?   @db.VarChar(12)
+  ReportDt           DateTime? @db.DateTime(0)
+  TypeofFluid        String?   @db.VarChar(15)
+  Color              String?   @db.VarChar(10)
+  Quantity           String?   @db.VarChar(15)
+  QuantityUnit       String?   @db.VarChar(10)
+  Appearance         String?   @db.VarChar(15)
+  AppearanceUnit     String?   @db.VarChar(10)
+  Coagulum           String?   @db.VarChar(10)
+  CoagulumUnit       String?   @db.VarChar(10)
+  TotalCellCount     String?   @db.VarChar(15)
+  TotalCellCountUnit String?   @db.VarChar(10)
+  Neutrophil         String?   @db.VarChar(15)
+  NeutrophilUnit     String?   @db.VarChar(10)
+  Lymphocyte         String?   @db.VarChar(15)
+  LymphocyteUnit     String?   @db.VarChar(10)
+  Eosinophil         String?   @db.VarChar(15)
+  EosinophilUnit     String?   @db.VarChar(10)
+  RBC                String?   @db.VarChar(15)
+  RBCUnit            String?   @db.VarChar(10)
+  MOthers            String?   @db.VarChar(15)
+  MOthersUnit        String?   @db.VarChar(10)
+  Glucose            String?   @db.VarChar(15)
+  GlucoseUnit        String?   @db.VarChar(10)
+  TotalProtine       String?   @db.VarChar(15)
+  TotalProtineUnit   String?   @db.VarChar(10)
+  Chiloride          String?   @db.VarChar(15)
+  ChilorideUnit      String?   @db.VarChar(10)
+  LDH                String?   @db.VarChar(15)
+  LDHUnit            String?   @db.VarChar(10)
+  ADH                String?   @db.VarChar(15)
+  ADHUnit            String?   @db.VarChar(10)
+  COthers            String?   @db.VarChar(15)
+  COthersUnit        String?   @db.VarChar(10)
+  Reaction           String?   @db.VarChar(100)
+  ZIEHL              String?   @db.VarChar(100)
+  GRAM               String?   @db.VarChar(100)
+  Other              String?   @db.VarChar(100)
+}
+
+model bom {
+  BomId  Int  @id
+  TestId Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bomdtl {
+  BomId  Int?
+  ItemId Int?
+  Unit   String? @db.VarChar(12)
+  Qty    Float?
+
+  @@ignore
+}
+
+model booking01 {
+  BookingId    String    @id @db.VarChar(12)
+  BookingTime  String?   @db.VarChar(12)
+  BookingDate  DateTime? @db.DateTime(0)
+  BookingFor   DateTime? @db.DateTime(0)
+  BookingP     String?   @db.VarChar(7)
+  BookingNo    String?   @db.VarChar(40)
+  BookingS     String?   @db.VarChar(9)
+  PatientName  String?   @db.VarChar(50)
+  Add1         String?   @db.VarChar(40)
+  Add2         String?   @db.VarChar(40)
+  Add3         String?   @db.VarChar(40)
+  Phone        String?   @db.VarChar(20)
+  Age          Float?
+  AgeType      String?   @db.VarChar(1)
+  Sex          String?   @db.VarChar(1)
+  DoctorId     Int?
+  CompanyId    Int?
+  m_CompanyId  Int?
+  UserId       Int?
+  Total        Float?
+  Receipt      Float?
+  CancelBookig Int?
+  CancelDate   DateTime? @db.DateTime(0)
+  CancelR      String?   @db.VarChar(120)
+  BTime        String?   @db.VarChar(12)
+  Remarks      String?   @db.VarChar(50)
+  PPr          String?   @db.VarChar(10)
+  LabId        Int?
+  AgentId      String?   @db.VarChar(5)
+  OPDRegNo     String?   @db.VarChar(50)
+  CashBank     String?   @db.VarChar(1)
+  ServiceCh    Float?
+  DiscP        Float?
+  DiscAmt      Float?
+  GTotal       Float?
+  CollectorId  Int?
+  CardNo       String?   @db.VarChar(40)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model bookingdtl01 {
+  BookingId String? @db.VarChar(12)
+  TestId    Int?
+  Rate      Float?
+  Profile   String? @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model buisiness2 {
+  Amount         Float?
+  DepType        String? @db.Char(1)
+  UpdateDateTime String? @db.VarChar(50)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model casedtl01 {
+  CaseId              String?   @db.VarChar(12)
+  TestId              Int?
+  Rate                Float?
+  Remarks             String?   @db.LongText
+  DeliveryDate        String?   @db.VarChar(12)
+  DeliveryTime        String?   @db.VarChar(20)
+  ReportDate          DateTime? @db.DateTime(0)
+  PathologistId       Int?
+  ValueEntry          String?   @db.VarChar(1)
+  Delivery            String?   @db.VarChar(1)
+  DeliveryDt          DateTime? @db.DateTime(0)
+  CancelTast          Int?
+  LabId               String?   @db.VarChar(20)
+  Profile             String?   @db.VarChar(1)
+  SlNo                Int?
+  PrintUser           Int?
+  LISData             String?   @db.VarChar(25)
+  CollDate            String?   @db.VarChar(25)
+  CollTime            String?   @db.VarChar(25)
+  PPBarCode           String?   @db.VarChar(100)
+  Approve             Int?
+  ApprovedPathologist String?   @db.VarChar(100)
+  ApproveDate         DateTime? @db.DateTime(0)
+  ProfileID           Int?
+  LabRcptDate         String?   @db.VarChar(12)
+  LabRcptTime         String?   @db.VarChar(20)
+  ReportTime          String?   @db.VarChar(15)
+  LabSlNo             String?   @db.VarChar(20)
+  Checked             Int?
+  Printed             String?   @db.VarChar(1)
+  reported            String?   @db.VarChar(1)
+  ComYN               String?   @db.VarChar(1)
+  CaseDtlId           BigInt
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model caseservicedtl {
+  CaseId        String? @db.VarChar(50)
+  ServiceTypeId Int?
+  ServiceType   String? @db.VarChar(50)
+  AreaId        Int?
+  Rate          Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model casewiseagent {
+  CaseId    String? @db.VarChar(12)
+  AgentId   Int?
+  AgentType Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model cashpaymenttrans {
+  CashPaymentTransId String?   @db.VarChar(20)
+  CashPaymentTransNo String?   @db.VarChar(20)
+  CashPaymentHeadId  Int?
+  CashPaymentDate    DateTime? @db.DateTime(0)
+  Amt                Float?
+  UserId             Int?
+  Narration          String?   @db.VarChar(250)
+  PayTo              String?   @db.VarChar(40)
+  OPDPAYMENT         Int?
+  IPDPAYMENT         Int?
+  DOCTORID           Int?
+  ADMITIONId         String?   @db.VarChar(100)
+  OPTFBILL           Int?
+  FINALBILLId        String?   @db.VarChar(100)
+  AMOUNTPABLE        Float?
+  TDS                Float?
+  PAYMRNTMODE        Int?
+  BANK               String?   @db.VarChar(100)
+  TRNId              String?   @db.VarChar(100)
+
+  @@ignore
+}
+
+model categorymst {
+  CategoryId   Int     @id
+  Category     String? @db.VarChar(50)
+  CategoryType Int?
+}
+
+model challan {
+  ChallanId   String    @id @db.VarChar(20)
+  ChallanDate DateTime? @db.DateTime(0)
+  ChallanNo   String?   @db.VarChar(20)
+  PoYN        String?   @db.VarChar(1)
+  POId        String?   @db.VarChar(20)
+  DescId      Int?
+  UserId      Int?
+  BillYN      String?   @db.VarChar(1)
+  BillId      String?   @db.VarChar(20)
+  ChallanType String?   @db.VarChar(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model challandtl {
+  ChallanId String?   @db.VarChar(20)
+  ItemId    Int?
+  Unit      String?   @db.VarChar(12)
+  GodownId  Int?
+  BatchId   Int?
+  ExpDate   DateTime? @db.DateTime(0)
+  Qty       Float?
+  Free      Float?
+  MRP       Float?
+  PackId    Int?
+
+  @@ignore
+}
+
+model chief {
+  chiefId Int     @id
+  chief   String? @db.VarChar(50)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model chiefdtl {
+  RegistrationId String? @db.VarChar(20)
+  VisitId        Int?
+  chief          String? @db.LongText
+  SlNo           Int?
+  admissionid    String? @db.VarChar(20)
+
+  @@ignore
+}
+
+model collector {
+  CollectorId Float   @id
+  Collector   String? @db.VarChar(50)
+  Add1        String? @db.VarChar(40)
+  Add2        String? @db.VarChar(40)
+  Add3        String? @db.VarChar(40)
+  Phone       String? @db.VarChar(20)
+  Zone        String? @db.VarChar(25)
+  Share       Float?
+  ShortName   String? @db.VarChar(5)
+}
+
+model companymst {
+  CompanyId Int     @id
+  Company   String? @db.VarChar(50)
+  Type      String? @db.VarChar(1)
+}
+
+model consent {
+  ConsentId   Int     @id
+  Consent     String? @db.VarChar(50)
+  Description String? @db.VarChar(8000)
+}
+
+model consententry {
+  ConsentEntryId   String    @id @db.VarChar(20)
+  ConsentEntryNo   String?   @db.VarChar(20)
+  ConsentEntryTime String?   @db.VarChar(10)
+  ConsentEntryDate DateTime? @db.DateTime(0)
+  AdmitionId       String?   @db.VarChar(20)
+  ConsentId        Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model copaymentmst {
+  CoPaymentId Int?
+  CompanyId   Int?
+  TPAId       Int?
+  Commission  Int?
+  Remarks     String? @db.VarChar(100)
+  UserId      Int?
+
+  @@ignore
+}
+
+model creditcareofmst {
+  CareOfId   Int     @id
+  CareOf     String? @db.VarChar(50)
+  CareOfType Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model creditrec {
+  CreditRecId   String?   @db.VarChar(20)
+  CreditRecNo   String?   @db.VarChar(20)
+  PartyId       Int?
+  CreditRecDate DateTime? @db.DateTime(0)
+  Amt           Float?
+  UserId        Int?
+  Narration     String?   @db.VarChar(100)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model cropdisc {
+  FinalBillId String?   @db.VarChar(20)
+  DiscDate    DateTime? @db.DateTime(0)
+  DiscAmt     Float?
+  UserId      Int?
+  Remarkes    String?   @db.VarChar(150)
+
+  @@ignore
+}
+
+model ctest01 {
+  CTestId    String    @id @db.VarChar(12)
+  CTestNo    String?   @db.VarChar(14)
+  CTime      String?   @db.VarChar(15)
+  CancelDate DateTime? @db.DateTime(0)
+  CaseId     String?   @db.VarChar(12)
+  UserId     Int?
+  Remarks    String?   @db.VarChar(70)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model culmedhd {
+  CulMedHdId Int?
+  CulMedHd   String? @db.VarChar(100)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model culturedtl {
+  CultureId      String? @db.VarChar(12)
+  MedicineId     Int?
+  RValue         String? @db.VarChar(12)
+  SYMBOL         String? @db.VarChar(50)
+  DISKCONTENT    String? @db.VarChar(20)
+  INCUBATIONZONE Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model culturemed {
+  CultureMedId   Int?
+  CultureMed     String? @db.VarChar(50)
+  SYMBOL         String? @db.VarChar(50)
+  DISKCONTENT    String? @db.VarChar(20)
+  INCUBATIONZONE Float?
+  Max            Float?
+  Min            Float?
+  CulMedHdId     Int?
+
+  @@ignore
+}
+
+model culturemst {
+  CultureId      String    @id @db.VarChar(12)
+  PatientName    String?   @db.VarChar(50)
+  CaseId         String?   @db.VarChar(12)
+  CaseNo         String?   @db.VarChar(16)
+  LabId          String?   @db.VarChar(12)
+  ReportDt       DateTime? @db.DateTime(0)
+  PathologistId1 String?   @db.VarChar(50)
+  PathologistId2 String?   @db.VarChar(50)
+  PathologistId3 String?   @db.VarChar(50)
+  GYN            Int?
+  Specimen       String?   @db.VarChar(60)
+  Remarks        String?   @db.VarChar(250)
+  Colony         String?   @db.VarChar(80)
+  Nots           String?   @db.LongText
+  Smear          String?   @db.VarChar(100)
+  Culture        String?   @db.VarChar(100)
+}
+
+model deathcer {
+  DeathCerId   String    @id @db.VarChar(20)
+  DeathCerNo   String?   @db.VarChar(20)
+  DeathTime    String?   @db.VarChar(10)
+  DeathCerDate DateTime? @db.DateTime(0)
+  AdmitionId   String?   @db.VarChar(20)
+  SonDaughter  String?   @db.VarChar(50)
+  WifeOf       String?   @db.VarChar(50)
+  DeathDate    DateTime? @db.DateTime(0)
+  DeathCause   String?   @db.VarChar(250)
+  DoctorId     Int?
+  TwinBaby1    Int?
+  TwinBaby2    Int?
+}
+
+model department {
+  DepartmentId Int     @id @default(autoincrement())
+  Department   String? @db.VarChar(50)
+  DepShName    String? @db.VarChar(5)
+  BP           Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model designation {
+  DesignationId Int?
+  Designation   String? @db.VarChar(50)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model diadtl {
+  RegistrationId String? @db.VarChar(20)
+  VisitId        Int?
+  diagonisis     String? @db.LongText
+  SlNo           Int?
+  admissionid    String? @db.VarChar(20)
+
+  @@ignore
+}
+
+model diagnostic_bookings {
+  id                      Int                         @id @default(autoincrement())
+  name                    String                      @db.VarChar(100)
+  email                   String                      @db.VarChar(100)
+  phone                   String                      @db.VarChar(20)
+  test_id                 Int
+  patient_id              Int
+  booking_date            DateTime?                   @default(now()) @db.DateTime(0)
+  status                  diagnostic_bookings_status? @default(pending)
+  created_at              DateTime                    @default(now()) @db.Timestamp(0)
+  updated_at              DateTime                    @default(now()) @db.Timestamp(0)
+  appointment_date        DateTime?                   @db.Date
+  appointment_time        DateTime?                   @db.Time(0)
+  diagnostic_prescription String?                     @db.VarChar(255)
+
+  @@index([patient_id], map: "patient_id")
+  @@index([test_id], map: "test_id")
+}
+
+model diago {
+  diagoId Int     @id
+  diago   String? @db.VarChar(50)
+}
+
+model dietchart {
+  DietChartId Int     @id
+  DietChart   String? @db.VarChar(50)
+  Description String? @db.VarChar(8000)
+}
+
+model dietentry {
+  DietEntryId   String    @id @db.VarChar(20)
+  DietEntryNo   String?   @db.VarChar(20)
+  DietEntryTime String?   @db.VarChar(10)
+  DietEntryDate DateTime? @db.DateTime(0)
+  AdmitionId    String?   @db.VarChar(20)
+  DietChartId   Int?
+}
+
+model discavd {
+  DiscAvdId   Int     @id
+  DiscAvd     String? @db.VarChar(50)
+  Description String? @db.VarChar(8000)
+}
+
+model discert {
+  DisCerId            String    @id @db.VarChar(20)
+  DisCerNo            String?   @db.VarChar(15)
+  DisCerTime          String?   @db.VarChar(10)
+  DisCerDate          DateTime? @db.DateTime(0)
+  AdmitionId          String?   @db.VarChar(20)
+  DischargeTemplateId Int?
+  DiscType            Int?
+  D                   String?   @db.VarChar(2000)
+  A                   String?   @db.VarChar(2000)
+  B                   String?   @db.VarChar(2000)
+  C                   String?   @db.VarChar(2000)
+  E                   String?   @db.VarChar(2000)
+  F                   String?   @db.VarChar(2000)
+  Follow              DateTime? @db.DateTime(0)
+  UserId              Int?
+  OtDate              DateTime? @db.DateTime(0)
+  Remarks             String?   @db.VarChar(100)
+  G                   String?   @db.VarChar(2000)
+  OTTypeId            Int?
+  DepGroupId          Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model discertdet {
+  DisCerId  String? @db.VarChar(20)
+  ColHeadId Int?
+  DisAdvDet String? @db.LongText
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model discertdtl {
+  DisCerId String? @db.VarChar(20)
+  Medicine String? @db.LongText
+  SlNo     Int?
+  unit     String? @db.VarChar(200)
+  days     String? @db.VarChar(200)
+  dose     String? @db.VarChar(200)
+  Type     String? @db.VarChar(200)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model dischargetemplatedet {
+  DischargeTemplateId Int?
+  ColHead             String? @db.VarChar(50)
+  ColHeadId           Int?
+  Details             String? @db.VarChar(8000)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model discothermaster {
+  DiscOtherId   Int?
+  DiscOtherName String? @db.VarChar(50)
+  ComissionYN   String? @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model discounttype {
+  DiscountTypeId Int?
+  DiscountType   String? @db.VarChar(12)
+
+  @@ignore
+}
+
+model doctorcashpayment {
+  cashPaymentId String    @id @db.VarChar(12)
+  DoctorId      Int?
+  PayDate       DateTime? @db.DateTime(0)
+  Amount        Float?
+  UserId        Int?
+  PaymentNo     String?   @db.VarChar(12)
+  Tds           Float?
+  optindorout   Int?
+  optoutdoor    Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model doctorcommissiondtl {
+  DoctorId       Int?
+  CommissionDate DateTime? @db.DateTime(0)
+  CaseId         String?   @db.VarChar(12)
+  TestId         Int?
+  Amount         Float?
+  Discount       Float?
+  CTest          String?   @db.VarChar(1)
+
+  @@ignore
+}
+
+model doctormaster {
+  DoctorId                             Int                                    @id @default(autoincrement())
+  Doctor                               String?                                @db.VarChar(255)
+  Add1                                 String?                                @db.LongText
+  Add2                                 String?                                @db.VarChar(40)
+  Add3                                 String?                                @db.VarChar(40)
+  Phone                                String?                                @db.VarChar(20)
+  Fax                                  String?                                @db.VarChar(20)
+  Identification                       String?                                @db.VarChar(40)
+  Qualification                        String?                                @db.VarChar(255)
+  IndoorRate                           Float?
+  MExecutiveId                         Int?
+  SpecialityId                         Int?
+  Commission                           String?                                @db.VarChar(1)
+  FixedDiscount                        Float?
+  MarkDoctorId                         Int?
+  RMO                                  String?                                @db.VarChar(1)
+  DrPr                                 String?                                @db.VarChar(5)
+  IndoorYN                             String?                                @db.VarChar(1)
+  NotReq                               Int?
+  Panel                                Int?
+  CreateDate                           DateTime?                              @db.DateTime(0)
+  RegistrationNo                       String?                                @db.VarChar(50)
+  Photo                                Bytes?
+  Qualification2                       String?                                @db.VarChar(255)
+  Qualification3                       String?                                @db.VarChar(255)
+  Qualification4                       String?                                @db.VarChar(255)
+  areacode                             Int?
+  ICURate                              Float?
+  CABRate                              Float?
+  SUITRate                             Float?
+  Status                               String?                                @default("off") @db.VarChar(20)
+  Email                                String?                                @unique(map: "Email") @db.VarChar(100)
+  Password                             String?                                @db.VarChar(255)
+  online_booking_app_booking_price     Decimal?                               @default(0.00) @db.Decimal(10, 2)
+  appointment_booking_app_appointments appointment_booking_app_appointments[]
+}
+
+model doctorvisit {
+  DoctorVisitId String    @id @db.VarChar(20)
+  AdmitionId    String?   @db.VarChar(20)
+  DoctorId      Int?
+  Rate          Float?
+  VisitDate     DateTime? @db.DateTime(0)
+  VisitTime     String?   @db.VarChar(10)
+  UserId        Int?
+  NoOfVisit     Int?
+  Amount        Float?
+  TypeOfVisit   String?   @db.VarChar(30)
+  Adv1          String?   @db.LongText
+  Adv2          String?   @db.LongText
+  payAmount     Float?
+  paidAmount    Float?
+  paiddate      DateTime? @db.DateTime(0)
+  Clearing      String?   @db.VarChar(1)
+  VUNIT         String?   @db.VarChar(10)
+  cashno        String?   @db.VarChar(20)
+  Package       String?   @db.VarChar(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model doctorvisitdt {
+  DoctorId   Int?
+  VDay       String? @db.VarChar(4)
+  VisitOurId Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model doctorvisitrate {
+  DoctorId    Int?
+  VisitTypeId Int?
+  Rate        Float?
+  ServiceCh   Float?
+  GroupA      Float?
+  GroupB      Float?
+  GroupC      Float?
+  GroupD      Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model doctorvisitsetup {
+  DoctorId     Int?
+  DailyPatient Int?
+  Remarks      String? @db.VarChar(40)
+  Vday         Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model docvtime {
+  WDay       Int?
+  VisitOurId Int?
+  DoctorId   Int?
+
+  @@ignore
+}
+
+model dose {
+  DoseId Int     @id
+  Dose   String? @db.VarChar(50)
+}
+
+model dpackage {
+  DpackageId      Int     @id
+  Dpackage        String? @db.VarChar(50)
+  Rate            Float?
+  SubDepartmentId Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model dpackageprofiletest {
+  DpackageId Int?
+  TestId     Int?
+  ProfileID  Int?
+  Profileyn  String? @db.VarChar(1)
+  SlNo       Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model dparamitersetup {
+  ParamiterId            Int?
+  CasePrefix             String?   @db.VarChar(8)
+  PatientPrefix          String?   @db.VarChar(8)
+  OnDeliveryDay          String?   @db.VarChar(20)
+  AfterDeliveryDay       String?   @db.VarChar(20)
+  BillACId               Int?
+  DalyCashAcId           Int?
+  PurAcId                Int?
+  VatAC                  Int?
+  DisdAcId               Int?
+  BillDos                String?   @db.VarChar(1)
+  BillHedder             String?   @db.VarChar(1)
+  Company                String?   @db.VarChar(1)
+  Indoor                 String?   @db.VarChar(1)
+  Agent                  String?   @db.VarChar(1)
+  Labaratory             String?   @db.VarChar(1)
+  Footer                 String?   @db.VarChar(1)
+  MFormatId              Int?
+  BillHeader             String?   @db.VarChar(1)
+  Remarks                String?   @db.VarChar(80)
+  HomeVisitTestId        Int?
+  CaseEntryWindow        Int?
+  LabSlNo                String?   @db.VarChar(1)
+  SpRemarks              String?   @db.VarChar(250)
+  SpRemTag               Int?
+  HeaderBox              String?   @db.VarChar(1)
+  PrePrented             String?   @db.VarChar(1)
+  AgentCase              String?   @db.VarChar(1)
+  CaseStNo               Int?
+  EftDate                DateTime? @db.DateTime(0)
+  ManualCace             String?   @db.VarChar(1)
+  HeadSpace              Int?
+  AgentPref              String?   @db.VarChar(1)
+  AgentRr                String?   @db.VarChar(1)
+  SingleDoctor           String?   @db.VarChar(1)
+  DoctorId               Int?
+  PrepheralSmear1        String?   @db.LongText
+  PrepheralSmear2        String?   @db.LongText
+  PrepheralSmear3        String?   @db.LongText
+  EMail                  String?   @db.VarChar(50)
+  DepRateYN              String?   @db.Char(1)
+  RateEdiyYN             String?   @db.Char(1)
+  MRLAllYN               String?   @db.Char(1)
+  DiagComp               String?   @db.VarChar(80)
+  IPDRec                 String?   @db.Char(1)
+  BarCodeYN              String?   @db.Char(1)
+  CaseDtlEdit            String?   @db.Char(1)
+  MoneyReceipt           String?   @db.VarChar(1)
+  FullPayment            String?   @db.VarChar(1)
+  OPDDefault             String?   @db.VarChar(1)
+  LeucoInLakh            String?   @db.VarChar(1)
+  BloodFrmtWindow        Int?
+  BarRT                  String?   @db.VarChar(1)
+  agentcomissioninhealth String?   @db.VarChar(1)
+  UHID                   String?   @db.Char(1)
+  OutSource              String?   @db.Char(1)
+  PlatlateC              String?   @db.VarChar(1)
+  Chield                 Int?
+  PPBarCodeYN            String?   @db.Char(1)
+  PLoginYN               String?   @db.Char(1)
+  PPBarCodeCaseYN        String?   @db.Char(1)
+  DeptYN                 String?   @db.Char(1)
+  NoOfBillCopy           Int?
+  ZeroMR                 String?   @db.Char(1)
+  ReptTest               String?   @db.Char(1)
+  DirectPrnt             Int?
+  SubDeptYN              String?   @db.Char(1)
+  BarCodePrinter         String?   @db.VarChar(150)
+  PView                  String?   @db.Char(1)
+  DscriptFrmt            String?   @db.Char(1)
+  CaseDiscYN             String?   @db.Char(1)
+  OpeningStock           Float?
+  OpnStckSrtDt           DateTime? @db.DateTime(0)
+  healthfees             Float?
+  PrfWithTest            String?   @default("N") @db.Char(1)
+  BSSTYPE                String?   @db.VarChar(1)
+  SMSG                   String?   @db.VarChar(200)
+  rcvinlq                String?   @db.Char(1)
+  tcodeseasch            String?   @db.Char(1)
+  deptprint              String?   @db.Char(1)
+  eyecaseno              String?   @db.Char(1)
+  pandt                  String?   @db.Char(1)
+  colourlab              String?   @db.Char(1)
+  report2ndprintyn       String?   @db.Char(1)
+  DrComIPD               String?   @default("N") @db.Char(1)
+  editinclassentry       String?   @default("N") @db.Char(1)
+  casenoipdopdwise       String?   @default("N") @db.Char(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model dripcategory {
+  DrIPCategoryId String? @db.VarChar(12)
+  Category       String? @db.VarChar(20)
+  DoctorId       String? @db.VarChar(10)
+  DoctorName     String? @db.VarChar(50)
+  PhoneNo        String? @db.VarChar(30)
+
+  @@ignore
+}
+
+model dripcategorymaster {
+  DrIPCategoryId String  @id @db.VarChar(12)
+  DrIPCategory   String? @db.VarChar(50)
+  ShortName      String? @db.VarChar(2)
+}
+
+model dtproperties {
+  id       Int
+  objectid Int?
+  property String  @db.VarChar(64)
+  value    String? @db.VarChar(255)
+  uvalue   String? @db.VarChar(255)
+  lvalue   Bytes?
+  version  Int     @default(0)
+
+  @@id([id, property])
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model duebillmst {
+  OldBillId   Int?
+  OldBillNo   String?   @db.VarChar(20)
+  BillDate    DateTime? @db.DateTime(0)
+  PatientName String?   @db.VarChar(50)
+  BillAmt     Float?
+  AdmissionNo String?   @db.VarChar(60)
+  Remarks     String?   @db.VarChar(100)
+  UserId      Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model dueparty {
+  DuePartyId  String? @db.VarChar(20)
+  Amount      String? @db.VarChar(30)
+  Clear       String? @db.VarChar(1)
+  FinalBillId String? @db.VarChar(20)
+  AdmitionId  String? @db.VarChar(20)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model duepartydtl {
+  DuePartyId     String?   @db.VarChar(20)
+  FinalBillId    String?   @db.VarChar(20)
+  MoneyreeciptId String?   @db.VarChar(20)
+  Amount         Float?
+  RecDate        DateTime? @db.DateTime(0)
+
+  @@ignore
+}
+
+model duereceipt {
+  RecId   String    @id @db.VarChar(12)
+  RecNo   String?   @db.VarChar(12)
+  RecDate DateTime? @db.DateTime(0)
+  BillId  String?   @db.VarChar(12)
+  Amount  Float?
+  UserId  Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model emr {
+  AdmitionId String? @db.VarChar(20)
+  PH         String? @db.LongText
+  CC         String? @db.LongText
+  OTN        String? @db.LongText
+  DN         String? @db.LongText
+  TD         String? @db.LongText
+
+  @@ignore
+}
+
+model encript {
+  RegId       Int       @id
+  RegNo       String    @db.VarChar(50)
+  Name        String    @db.LongText
+  FromDate    DateTime? @db.Date
+  ToDate      DateTime? @db.Date
+  LastLogDate DateTime? @db.Date
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model extimate {
+  AdmitionId String?   @db.VarChar(20)
+  ExDate     DateTime? @db.DateTime(0)
+  ExTime     String    @db.VarChar(20)
+  UserId     Int?
+  Amount     Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model eyesaledtl {
+  BIllId   String?   @db.VarChar(12)
+  ItemId   Int?
+  Unit     String?   @db.VarChar(12)
+  GodownId Int?
+  BatchId  Int?
+  ExpDate  DateTime? @db.DateTime(0)
+  Qty      Float?
+  Free     Float?
+  Rate     Float?
+  VatP     Float?
+  Vat      Float?
+  TotalAmt Float?
+  UserId   Int?
+  MRP      Float?
+  CSTP     Float?
+  CSTAmt   Float?
+  PackId   Int?
+
+  @@ignore
+}
+
+model eyesalemst {
+  BIllId       String    @id @db.VarChar(12)
+  BillDate     DateTime? @db.DateTime(0)
+  BillNo       String?   @db.VarChar(50)
+  DescId       Float?
+  Party        String?   @db.VarChar(60)
+  Discount     Float?
+  RoundOff     Float?
+  NetAmt       Float?
+  DateFrom     DateTime? @db.DateTime(0)
+  DateTo       DateTime? @db.DateTime(0)
+  Narration    String?   @db.LongText
+  DiscP        Float?
+  TaxType      Int?
+  TaxP         Float?
+  VatAmt       Float?
+  BillType     String?   @db.Char(1)
+  PType        Int?
+  UserId       Int?
+  DepType      String?   @db.VarChar(1)
+  SlipNo       String?   @db.VarChar(20)
+  ChallanYN    String?   @db.VarChar(1)
+  VatType      Int?
+  CompBillType Int?
+  SubCompanyId Int?
+  BillFormatId Int?
+  Doctor       String?   @db.VarChar(40)
+  Address      String?   @db.VarChar(40)
+  Replace      String?   @db.VarChar(1)
+  KP           String?   @db.VarChar(1)
+  ROT          Float?
+  MDr          String?   @db.VarChar(50)
+  ReceiptAmt   Float?
+  BalancAmt    Float?
+  DeliveryDt   DateTime? @db.DateTime(0)
+  ClearYN      String?   @db.VarChar(1)
+  AgentId      Int?
+  OPDId        String?   @db.VarChar(12)
+  ClearDt      DateTime? @db.DateTime(0)
+}
+
+model fb {
+  FinalBillId     String    @id @db.VarChar(20)
+  BillNo          String?   @db.VarChar(22)
+  BillDate        DateTime? @db.DateTime(0)
+  BillTime        String?   @db.VarChar(10)
+  ReleaseTime     String?   @db.VarChar(10)
+  BillType        String?   @db.VarChar(1)
+  ReffId          String?   @db.VarChar(20)
+  Discount        Float?
+  ReciptAmt       Float?
+  CB              String?   @db.VarChar(1)
+  ChequeNo        String?   @db.VarChar(12)
+  ChequeDt        DateTime? @db.DateTime(0)
+  BankName        String?   @db.VarChar(50)
+  CashlessId      Int?
+  Rename          String?   @db.VarChar(1)
+  UserId          Int?
+  MoneyreeciptId  String?   @db.VarChar(20)
+  BillAmt         Float?
+  Remarks         String?   @db.VarChar(80)
+  EditBill        String?   @db.VarChar(1)
+  TDS             Float?
+  TDSDate         DateTime? @db.DateTime(0)
+  MBillNo         String?   @db.VarChar(20)
+  Approval        Float?
+  ServiceTax      Float?
+  TaxInc          String?   @db.Char(1)
+  PatiectPartyAmt Float?
+  CorpPabley      Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model fbdtl {
+  FinalBillId  String?   @db.VarChar(20)
+  slno         Int?
+  PatientName  String?   @db.VarChar(50)
+  Disease      String?   @db.VarChar(200)
+  Add1         String?   @db.VarChar(50)
+  Add2         String?   @db.VarChar(50)
+  Add3         String?   @db.VarChar(50)
+  Age          Int?
+  AgeType      String?   @db.VarChar(1)
+  Sex          String?   @db.VarChar(1)
+  AdmitionDate DateTime? @db.DateTime(0)
+  PrintHead    String?   @db.VarChar(50)
+  SubHead      String?   @db.VarChar(50)
+  Particular   String?   @db.VarChar(200)
+  Amount       Float?
+  TotAmount    Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model finalbillalldtl {
+  FinalBillId  String?   @db.VarChar(20)
+  slno         Int?
+  PatientName  String?   @db.VarChar(70)
+  Diseasecode  String?   @db.VarChar(20)
+  Disease      String?   @db.VarChar(200)
+  Add1         String?   @db.VarChar(50)
+  Add2         String?   @db.VarChar(50)
+  Add3         String?   @db.VarChar(50)
+  Age          Int?
+  AgeType      String?   @db.VarChar(1)
+  Sex          String?   @db.VarChar(1)
+  AdmitionDate DateTime? @db.DateTime(0)
+  PrintHead    String?   @db.VarChar(200)
+  SubHead      String?   @db.VarChar(200)
+  Particular   String?   @db.LongText
+  Amount       Float?
+  TotAmount    Float?
+  MyPic        String?   @db.Char(1)
+  scharge      Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model finalbillbeddtl {
+  AdmitionId String?   @db.VarChar(20)
+  NoofDays   Int?
+  MyDate     DateTime? @db.DateTime(0)
+  BedId      Int?
+  BedRate    Float?
+  CGST       Float?
+  SGST       Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model finalbilldisc {
+  FinalBillId String?   @db.VarChar(20)
+  DiscDate    DateTime? @db.DateTime(0)
+  DiscAmt     Float?
+  UserId      Int?
+  Remarkes    String?   @db.VarChar(150)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model finalbilldtl {
+  FinalBillId String? @db.VarChar(20)
+  SlNo        Int?
+  HeadName    String? @db.VarChar(30)
+  Amount1     Float?
+  Amount2     Float?
+  Amount3     Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model finalbillitmdtl {
+  FinalBillId String? @db.VarChar(20)
+  SlNo        Int?
+  HeadName    String? @db.VarChar(30)
+  ItemId      Int?
+  BillAmt     Float?
+  DiscAmt     Float?
+  RefAmt      Float?
+  BalAmt      Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model fixedformateprint {
+  CaseId      Int?
+  TestId      Int?
+  Id          Int
+  ReportHead  String? @db.VarChar(50)
+  ReportVal   String? @db.VarChar(50)
+  UOM         String? @db.VarChar(20)
+  NornalValue String? @db.VarChar(50)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model formula {
+  FormulaId    Int?
+  FormulaCode  String? @db.VarChar(100)
+  FormulaName  String? @db.VarChar(200)
+  FormulaText  String? @db.VarChar(500)
+  FormulaValue String? @db.VarChar(500)
+
+  @@ignore
+}
+
+model godown {
+  GodownId   Int     @id
+  Godown     String? @db.VarChar(50)
+  GodownTYPE String? @db.VarChar(50)
+}
+
+model goodsreplacednote {
+  GoodsReplacedNoteId String    @id @db.VarChar(12)
+  GoodsReplacedNoteNo String?   @db.VarChar(20)
+  NoteDate            DateTime? @db.DateTime(0)
+  RBIllId             String?   @db.VarChar(12)
+  RBIllNo             String?   @db.VarChar(20)
+  SBIllId             String?   @db.VarChar(12)
+  SBIllNo             String?   @db.VarChar(20)
+  DescId              Int?
+  Party               String?   @db.VarChar(50)
+  UserId              Int?
+}
+
+model gstmst {
+  GSTId Int    @id
+  GST   Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model healthdtl {
+  HealthId Int?
+  Name     String? @db.VarChar(50)
+  Age      Int?
+  Sex      String? @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model healthmst {
+  HealthId   Int?
+  HealthNo   String?   @db.VarChar(20)
+  IssueDt    DateTime? @db.DateTime(0)
+  ExpDt      DateTime? @db.DateTime(0)
+  MName      String?   @db.VarChar(50)
+  Add1       String?   @db.VarChar(50)
+  Add2       String?   @db.VarChar(50)
+  Add3       String?   @db.VarChar(50)
+  MobileNo   String?   @db.VarChar(10)
+  Email      String?   @db.VarChar(50)
+  AgentId    Int?
+  OPDRegNo   String?   @db.VarChar(50)
+  healthfees Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impl_i_table {
+  IPOPFLAG         String?   @db.VarChar(1)
+  PINNO            String?   @db.VarChar(15)
+  REF_VISITNO      String    @db.VarChar(15)
+  ADMISSIONNO      String?   @db.VarChar(15)
+  REQDATETIME      DateTime  @db.DateTime(0)
+  TESTPROF_CODE    String    @db.VarChar(100)
+  PROCESSED        String?   @db.VarChar(1)
+  PATFNAME         String?   @db.VarChar(50)
+  PATMNAME         String?   @db.VarChar(50)
+  PATLNAME         String?   @db.VarChar(40)
+  PAT_DOB          DateTime? @db.DateTime(0)
+  GENDER           String?   @db.VarChar(1)
+  PATAGE           BigInt?
+  AGEUNIT          String?   @db.VarChar(9)
+  DOC_NAME         String?   @db.VarChar(40)
+  PATIENTTYPECLASS String?   @db.VarChar(20)
+  SEQNO            BigInt?
+  ADDDATE          DateTime? @db.DateTime(0)
+  ADDTIME          BigInt?
+  TITLE            String?   @db.VarChar(10)
+  LABNO            BigInt?
+  DATESTAMP        DateTime? @db.DateTime(0)
+  PARAMCODE        String    @db.VarChar(50)
+  PARAMNAME        String?   @db.VarChar(100)
+  MRESULT          String?   @db.VarChar(50)
+  BC_PRINTED       String?   @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model impl_sampledata {
+  SRNO         String?   @db.VarChar(10)
+  SDATE        DateTime? @db.DateTime(0)
+  SAMPLEID     String?   @db.VarChar(50)
+  TESTID       String?   @db.VarChar(50)
+  MACHINEID    String?   @db.VarChar(50)
+  SUFFIX       String?   @db.VarChar(2)
+  TRANSFERFLAG String?   @db.VarChar(1)
+  TMPVALUE     String?   @db.VarChar(50)
+  DESCRIPTION  String?   @db.VarChar(50)
+  RUNDATE      DateTime? @db.DateTime(0)
+  RESULT       String?   @db.VarChar(50)
+  FINALFLAG    String?   @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model inden {
+  indenId     String?   @db.VarChar(12)
+  indenNo     String?   @db.VarChar(15)
+  indenTime   String?   @db.VarChar(15)
+  indenDate   DateTime? @db.DateTime(0)
+  godownid    String?   @db.VarChar(12)
+  UserId      Int?
+  currentuser Int?
+  remarks     String?   @db.VarChar(100)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model indendtl {
+  indenId  String? @db.VarChar(12)
+  itemId   Int?
+  itemqty  Float?
+  stockqty Float?
+
+  @@ignore
+}
+
+model indoorcompany {
+  IndoorCompanyId Int     @id
+  IndoorCompany   String? @db.VarChar(50)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model indoorcompanybedch {
+  CashlessId Int?
+  BedId      Int?
+  Rate       Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model indoorcompanyotch {
+  CashlessId Int?
+  OtItemId   Int?
+  Rate       Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model indoorcompanyothch {
+  CashlessId     Int?
+  OtherChargesId Int?
+  Rate           Float?
+  ICU            Float?
+  CAB            Float?
+  SUIT           Float?
+  ccode          String? @db.VarChar(50)
+  corporateyn    String? @db.VarChar(1)
+
+  @@ignore
+}
+
+model indoormoneyreecipt {
+  MoneyreeciptId String    @id @db.VarChar(20)
+  MoneyreeciptNo String?   @db.VarChar(20)
+  RefferenceId   String?   @db.VarChar(20)
+  ReceiptType    Int?
+  ReceiptDate    DateTime? @db.DateTime(0)
+  PaymentType    Int?
+  Amount         Float?
+  Bank           String?   @db.VarChar(50)
+  Cheque         String?   @db.VarChar(20)
+  ChqDate        DateTime? @db.DateTime(0)
+  Narration      String?   @db.VarChar(150)
+  UserId         Int?
+  SlipNo         String?   @db.VarChar(20)
+  ClearDate      DateTime? @db.DateTime(0)
+  TDS            Float?
+  PaidBy         String?   @db.VarChar(100)
+  Remarks        String?   @db.VarChar(100)
+  ReceiptTime    String?   @db.VarChar(20)
+  PrintDate      DateTime? @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model invstdtl {
+  RegistrationId String? @db.VarChar(20)
+  VisitId        Int?
+  Invest         String? @db.LongText
+  SlNo           Int?
+  admissionid    String? @db.VarChar(20)
+
+  @@ignore
+}
+
+model ipdbooking {
+  BookingID       String    @id @db.VarChar(20)
+  BookingNo       String?   @db.VarChar(20)
+  BookingDate     DateTime? @db.DateTime(0)
+  BookingTime     String?   @db.VarChar(10)
+  BookingFor      DateTime? @db.DateTime(0)
+  OPD             String?   @db.Char(1)
+  OPDId           String?   @db.VarChar(20)
+  PatientName     String?   @db.VarChar(50)
+  Add1            String?   @db.VarChar(50)
+  Add2            String?   @db.VarChar(50)
+  Add3            String?   @db.VarChar(50)
+  Age             Float?
+  AgeType         String?   @db.Char(1)
+  Sex             String?   @db.Char(1)
+  MStatus         String?   @db.Char(1)
+  PhoneNo         String?   @db.VarChar(22)
+  AreaId          Int?
+  ReligionId      Int?
+  GurdianName     String?   @db.VarChar(50)
+  Relation        String?   @db.VarChar(50)
+  RelativeName    String?   @db.VarChar(50)
+  RelativePhoneNo String?   @db.VarChar(22)
+  Amount          Float?
+  ReceiptType     Int?
+  Bank            String?   @db.VarChar(50)
+  Cheque          String?   @db.VarChar(20)
+  ChqDate         DateTime? @db.DateTime(0)
+  Narration       String?   @db.VarChar(150)
+  UserId          Int?
+  Cleardate       DateTime? @db.DateTime(0)
+  PaidBy          String?   @db.VarChar(100)
+  UCDoctor1Id     Int?
+  UCDoctor2Id     Int?
+  UCDoctor3Id     Int?
+  Package         String?   @db.Char(1)
+  PackageId       Int?
+  PackageAmount   Float?
+  AdmitionId      String?   @db.VarChar(20)
+  AdmitionDate    DateTime? @db.DateTime(0)
+  OtherAmt        Float?
+  DiseaseId       Int?
+  ot              String?   @db.Char(1)
+  otId            Int?
+  otAmount        Float?
+  AgeN            Int?
+  AgeD            Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model issuedepdtl {
+  IssueDepId String?   @db.VarChar(20)
+  ItemId     Int?
+  Unit       String?   @db.VarChar(12)
+  GodownId   Int?
+  BatchId    Int?
+  ExpDate    DateTime? @db.DateTime(0)
+  Qty        Float?
+  Free       Float?
+  Rate       Float?
+  VatP       Float?
+  Vat        Float?
+  TotalAmt   Float?
+  UserId     Int?
+
+  @@ignore
+}
+
+model issuedepmaster {
+  IssueDepId   String    @id @db.VarChar(20)
+  IssueDate    DateTime? @db.DateTime(0)
+  IssueDepNo   String?   @db.VarChar(20)
+  DepartmentId Int?
+  UserId       Int?
+  Discount     Float?
+  RoundOff     Float?
+  NetAmount    Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model issuedtl01 {
+  IssueId String? @db.VarChar(12)
+  ItemId  Int?
+  Unit    String? @db.VarChar(12)
+  Qty     Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model issuemeddtl {
+  IssueMedId String?   @db.VarChar(20)
+  ItemId     Int?
+  Unit       String?   @db.VarChar(12)
+  GodownId   Int?
+  BatchId    Int?
+  ExpDate    DateTime? @db.DateTime(0)
+  Qty        Float?
+  Free       Float?
+  Rate       Float?
+  VatP       Float?
+  Vat        Float?
+  TotalAmt   Float?
+  UserId     Int?
+  ItemIdD    Int?
+  BatchIdD   Int?
+  DiscP      Float?
+  DiscAmt    Float?
+  NRate      Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model issuemeddtlc {
+  IssueMedId String?   @db.VarChar(20)
+  ItemId     Int?
+  Unit       String?   @db.VarChar(12)
+  GodownId   Int?
+  BatchId    Int?
+  ExpDate    DateTime? @db.DateTime(0)
+  Qty        Float?
+  Free       Float?
+  Rate       Float?
+  VatP       Float?
+  Vat        Float?
+  TotalAmt   Float?
+  UserId     Int?
+
+  @@ignore
+}
+
+model issuemedmaster {
+  IssueMedId String    @id @db.VarChar(20)
+  AdmitionId String?   @db.VarChar(20)
+  IssueDate  DateTime? @db.DateTime(0)
+  IssueMedNo String?   @db.VarChar(20)
+  UserId     Int?
+  Discount   Float?
+  RoundOff   Float?
+  NetAmount  Float?
+  BedId      Int?
+  MBedNo     String?   @db.VarChar(20)
+  IssueType  Int?
+  RecAmt     Float?
+  CGST       Float?
+  SGST       Float?
+  medireqyn  String?   @db.Char(1)
+  Reqno      String?   @db.VarChar(20)
+  CheckIn    Int?
+  delDt      DateTime? @db.DateTime(0)
+  delTime    String?   @db.VarChar(10)
+  issueTime  String?   @db.VarChar(10)
+}
+
+model issuemedmasterc {
+  IssueMedId String    @id @db.VarChar(20)
+  AdmitionId String?   @db.VarChar(20)
+  IssueDate  DateTime? @db.DateTime(0)
+  IssueMedNo String?   @db.VarChar(20)
+  UserId     Int?
+  Discount   Float?
+  RoundOff   Float?
+  NetAmount  Float?
+  BedId      Int?
+  MBedNo     String?   @db.VarChar(20)
+  IssueType  Int?
+}
+
+model issuemst01 {
+  IssueId      String    @id @db.VarChar(12)
+  IssueDate    DateTime? @db.DateTime(0)
+  IssueNo      String?   @db.VarChar(50)
+  UserId       Int?
+  DepartmentId Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model itemdtl {
+  ItemId Int?
+  PackId Int?
+  Pack   String? @db.VarChar(40)
+  PUnit  String? @db.VarChar(10)
+  SUnit  String? @db.VarChar(10)
+  Factor Float?
+
+  @@ignore
+}
+
+model itemgroup {
+  ItemGroupId   Int     @id
+  ItemGroup     String? @db.VarChar(50)
+  ItemGroupType String? @db.VarChar(1)
+}
+
+model itemmst {
+  ItemId          Int     @id
+  ItemGroupId     Int?
+  ItemSubGroupId  Int?
+  Item            String? @db.VarChar(60)
+  PUnit           String? @db.VarChar(10)
+  SUnit           String? @db.VarChar(10)
+  Factor          Float?
+  ReOrLebel       Float?
+  ItemType        String? @db.VarChar(1)
+  SaleRate        Float?
+  VatP            Float?
+  SubGroupId      Int?
+  CategoryId      Int?
+  CSTP            Float?
+  spect           Int?
+  DiscP           Float?
+  Prec            Int?
+  HSNCode         String? @db.VarChar(15)
+  InAdmCh         Int?
+  minstockcentral Float?
+  sdh             Int?
+  sdx             Int?
+  tarmadol        Int?
+  narcotic        Int?
+  RACKId          Int?
+  GSTID           Int?
+  igst            Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model itemopbal {
+  ItemId   Int?
+  BatchId  Int?
+  YearNo   Int?
+  Qty      Float?
+  Amount   Float?
+  GodownId Int?
+  UOM      String? @db.VarChar(10)
+
+  @@ignore
+}
+
+model itemsubgroup {
+  ItemSubGroupId Int     @id
+  ItemSubGroup   String? @db.VarChar(50)
+  ItemGroupId    Int?
+  SubGroupType   String? @db.VarChar(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model ivfbiodata {
+  IVFId       String?   @db.VarChar(20)
+  IVFNo       String?   @db.VarChar(20)
+  IVFDate     DateTime? @db.DateTime(0)
+  Type        String?   @db.VarChar(50)
+  Name        String?   @db.VarChar(100)
+  Age         Int?
+  Add1        String?   @db.VarChar(100)
+  Add2        String?   @db.VarChar(100)
+  Add3        String?   @db.VarChar(100)
+  Complexion  String?   @db.VarChar(20)
+  EyeColour   String?   @db.VarChar(20)
+  BloodGroup  String?   @db.VarChar(5)
+  Height      String?   @db.VarChar(10)
+  Weight      String?   @db.VarChar(10)
+  Document    String?   @db.LongText
+  Occupation  String?   @db.VarChar(100)
+  PhoneNo     String?   @db.VarChar(22)
+  WName       String?   @db.VarChar(100)
+  WAge        Int?
+  WAdd1       String?   @db.VarChar(100)
+  WAdd2       String?   @db.VarChar(100)
+  WAdd3       String?   @db.VarChar(100)
+  WComplexion String?   @db.VarChar(20)
+  WEyeColour  String?   @db.VarChar(10)
+  WBloodGroup String?   @db.VarChar(5)
+  WHeight     String?   @db.VarChar(10)
+  WWeight     String?   @db.VarChar(10)
+  WDocument   String?   @db.LongText
+  WOccupation String?   @db.VarChar(100)
+  WPhoneNo    String?   @db.VarChar(22)
+  HusbandName String?   @db.VarChar(100)
+  AgentName   String?   @db.VarChar(100)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model ivfbloodtestdtl {
+  TestId   Int?
+  TestDate DateTime? @db.DateTime(0)
+  Result   String?   @db.LongText
+  IVFId    String?   @db.VarChar(20)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model ivfbloodtesthdr {
+  TestId   Int?
+  TestCode String? @db.VarChar(20)
+  TestName String? @db.VarChar(500)
+
+  @@ignore
+}
+
+model lab {
+  LabId        Int     @id
+  Lab          String? @db.VarChar(50)
+  Add1         String? @db.VarChar(40)
+  Add2         String? @db.VarChar(40)
+  Add3         String? @db.VarChar(40)
+  MExecutiveId Int?
+  AccType      String? @db.VarChar(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model labno {
+  LabId        String?   @db.VarChar(12)
+  LabNo        String?   @db.VarChar(20)
+  CaseId       String?   @db.VarChar(12)
+  DepartmentId Int?
+  CaseDate     DateTime? @db.DateTime(0)
+  DPSlip       DateTime? @db.DateTime(0)
+  DPTime       DateTime? @db.DateTime(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model marketing {
+  MarketingId Int?
+  Marketing   String? @db.VarChar(50)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model marketingex {
+  MarketingExId Int?
+  MarketingEx   String? @db.VarChar(40)
+  Add1          String? @db.VarChar(40)
+  Add2          String? @db.VarChar(40)
+  Add3          String? @db.VarChar(40)
+  MPhone        String? @db.VarChar(20)
+  RPhone        String? @db.VarChar(20)
+
+  @@ignore
+}
+
+model medeadvancereceipt {
+  IndReceiptId String    @id @db.VarChar(20)
+  IndReceiptNo String?   @db.VarChar(20)
+  AdmitionId   String?   @db.VarChar(20)
+  ReceiptDate  DateTime? @db.DateTime(0)
+  Amount       Float?
+  UserId       Int?
+  Narrtion     String?   @db.VarChar(200)
+  PaymentType  Int?
+  BANK         String?   @db.VarChar(50)
+  Cheque       String?   @db.VarChar(10)
+  ChqDate      DateTime? @db.DateTime(0)
+  IssueId      String?   @db.VarChar(20)
+  ReffId       String?   @db.VarChar(14)
+}
+
+model medeindoorbill {
+  IndoorBillId String    @id @db.VarChar(20)
+  IndoorBillNo String?   @db.VarChar(20)
+  AdmitionId   String?   @db.VarChar(20)
+  BillDate     DateTime? @db.DateTime(0)
+  TotAmount    Float?
+  DiscAmount   Float?
+  RoundOff     Float?
+  BillAmount   Float?
+  UserId       Int?
+  RefundAmt    Float?
+  AdvAmt       Float?
+  IssueAmt     Float?
+  ReturenAmt   Float?
+  AdjAmt       Float?
+  RecAmt       Float?
+  Remarks      String?   @db.VarChar(100)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model medicineparamiter {
+  PurchaseId        Int?
+  SaleId            Int?
+  VatId             Int?
+  DiscountId        Int?
+  MedeStoreName     String? @db.VarChar(100)
+  IndoorAtc         String? @db.VarChar(1)
+  DLNo              String? @db.VarChar(20)
+  DosPrntSetup      Int?
+  RndOff            String? @db.VarChar(1)
+  DescAmt           Float?
+  DiscP1            String? @db.VarChar(1)
+  StateCode         String? @db.VarChar(2)
+  DocMst            String? @db.VarChar(1)
+  MRWBNo            String? @db.VarChar(1)
+  gstonfree         String? @db.VarChar(1)
+  fixeddiscount     Float?
+  backdateentryyn   String? @db.VarChar(1)
+  withoutstockentry String? @db.VarChar(1)
+  returnwithoutsale String? @db.VarChar(1)
+  salerateeditable  String? @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model moneyreceipt {
+  MoneyReceiptNo String?   @db.VarChar(12)
+  ReceiptDate    DateTime? @db.DateTime(0)
+  BillId         String?   @db.VarChar(12)
+  Type           Int?
+
+  @@ignore
+}
+
+model nurse {
+  NurseId   Int     @id
+  Nurse     String? @db.VarChar(50)
+  Add1      String? @db.VarChar(50)
+  Add2      String? @db.VarChar(50)
+  Add3      String? @db.VarChar(50)
+  GroupType String? @db.VarChar(10)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model nursestation {
+  NurseStationId Int?
+  NurseStation   String? @db.VarChar(12)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model nursestationdtl {
+  NurseStationId Int?
+  BedId          Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model opbal {
+  DescId String? @db.VarChar(8)
+  YearNo Int?
+  DrCr   String? @db.VarChar(2)
+  Amt    Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model opdmed {
+  RegistrationId String? @db.VarChar(20)
+  VisitId        Int?
+  Medicine       String? @db.VarChar(80)
+  SlNo           Int?
+  admissionid    String? @db.VarChar(20)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model opdmoneyreceipt {
+  ReceiptId     String    @db.VarChar(12)
+  ReceiptNo     String?   @db.VarChar(30)
+  ReffId        String?   @db.VarChar(12)
+  ReceiptDate   DateTime? @db.DateTime(0)
+  BillAmount    Float?
+  Desc          Float?
+  DiscAmt       Float?
+  Amount        Float?
+  CBalAmt       Float?
+  BalanceAmt    Float?
+  Remarks       String?   @db.VarChar(50)
+  UserId        Int?
+  TypeofReceipt Int?      @db.SmallInt
+  DiscOtherId   Int?
+  DiscChk       String?   @db.VarChar(1)
+  HeadId        String?   @db.VarChar(14)
+  ReffType      String?   @db.VarChar(1)
+  MRType        String?   @db.VarChar(1)
+  BankName      String?   @db.VarChar(50)
+  ChequeNo      String?   @db.VarChar(50)
+  AgentDiscId   Int?
+  TDS           Float?
+  AdjAmt        Float?
+  CompName      String?   @db.VarChar(30)
+  Narration     String?   @db.VarChar(100)
+
+  @@ignore
+}
+
+model otbill {
+  OtBillId                 String    @id @db.VarChar(20)
+  AdmitionId               String?   @db.VarChar(20)
+  OtBillNo                 String?   @db.VarChar(20)
+  BillDate                 DateTime? @db.DateTime(0)
+  AnesthesiaDocId          Int?
+  AnesthesiaAmt            Float?
+  SergonDocId              Int?
+  SergonDocAmt             Float?
+  OthersDocId              Int?
+  OthersDocAmt             Float?
+  OTId                     Int?
+  OTType                   String?   @db.VarChar(20)
+  OTAmt                    Float?
+  ConsumableAmt            Float?
+  InstrumentAmt            Float?
+  MedicineAmt              Float?
+  TotalAmt                 Float?
+  OtTypeId                 Int?
+  OthersCh                 Float?
+  UserId                   Float?
+  OTSlotId                 Float?
+  OTHr                     Int?
+  OTMinit                  Int?
+  OTMBill                  Float?
+  anttype                  String?   @db.VarChar(20)
+  Incision                 String?   @db.VarChar(250)
+  PreOperativeDiagonistic  String?   @db.VarChar(250)
+  PostOperativeDiagonistic String?   @db.VarChar(250)
+  Findings                 String?   @db.VarChar(250)
+  Steps                    String?   @db.VarChar(250)
+  Closure                  String?   @db.VarChar(250)
+  OperativeDifficulties    String?   @db.VarChar(250)
+  Count                    String?   @db.VarChar(250)
+  BloodLoss                String?   @db.VarChar(250)
+  Transfusion              String?   @db.VarChar(250)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model otbilldtl {
+  OtBillId String? @db.VarChar(20)
+  OtItemId Int?
+  Rate     Float?
+  Unit     String? @db.VarChar(20)
+  Qty      Float?
+  Amount   Float?
+  SlNo     Int?
+
+  @@ignore
+}
+
+model othercharges {
+  OtherChargesId  Int     @id @default(autoincrement())
+  OtherCharges    String? @db.VarChar(50)
+  DepGroupId      Int?
+  DescId          Int?
+  Rate            Float?
+  Unit            String? @db.VarChar(20)
+  ServiceCh       String? @db.VarChar(1)
+  ShowInFinal     String? @db.VarChar(1)
+  BillPrintHeadId Int?
+  ConcYN          String? @db.VarChar(1)
+  QtyReq          String? @db.VarChar(1)
+  Code            String? @db.VarChar(16)
+  EditRate        Int?
+  NotReq          Int?
+  BP              Float?
+  PPN             Int?
+  PPNAmt          Float?
+  InAdmCh         Int?
+  cCode           String? @db.VarChar(16)
+  CSTP            Float?
+  SGST            Float?
+  vatp            Float?
+  IncludeGst      Int?
+  ICU             Float?
+  CAB             Float?
+  SUIT            Float?
+  IPYN            String? @db.VarChar(1)
+  corporateyn     String? @db.VarChar(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model outdoorbilldtl {
+  OutBillId String? @db.VarChar(20)
+  OtherChId Int?
+  Qty       Float?
+  Amount    Float?
+
+  @@ignore
+}
+
+model outdoorothercharge {
+  OtherChId   Int     @id
+  OtherCharge String? @db.VarChar(50)
+  Rate        Float?
+  UNIT        String? @db.VarChar(5)
+  OT          String? @db.VarChar(1)
+  OTSLOTID    Int?
+
+  @@map("outdoorothercharge")
+}
+
+model pack {
+  PackId Int     @id
+  Pack   String? @db.VarChar(50)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model packageotherch {
+  PackageId      Int?
+  OtherChargesId Int?
+  Rate           Float?
+  Qty            Float?
+  Amount         Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model packexclude {
+  ExcludeId Int?
+  PackageId Int?
+  Exclude   String? @db.VarChar(50)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model paramiteroutdoor {
+  RegCh           Float?
+  RegValid        Int?
+  ValidType       String? @db.Char(1)
+  Registration    String? @db.Char(1)
+  MRDosYN         String? @db.Char(1)
+  SrvChYN         String? @db.Char(1)
+  DocChYN         String? @db.Char(1)
+  SvcChYN         String? @db.Char(1)
+  UserYN          String? @db.Char(1)
+  AsstYN          String? @db.Char(1)
+  adminyn         String? @db.Char(1)
+  backdateentryyn String? @db.VarChar(1)
+  cregno          String? @db.VarChar(1)
+
+  @@ignore
+}
+
+model pasthistory {
+  pasthistoryId Int     @id
+  pasthistory   String? @db.VarChar(250)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model pasthistorydtl {
+  RegistrationId String? @db.VarChar(20)
+  VisitId        Int?
+  pasthistory    String? @db.LongText
+  SlNo           Int?
+  admissionid    String? @db.VarChar(20)
+
+  @@ignore
+}
+
+model pathologist {
+  PathologistId Int     @id
+  Pathologist   String? @db.VarChar(50)
+  Qua1          String? @db.VarChar(40)
+  Qua2          String? @db.VarChar(40)
+  Greetings     String? @db.VarChar(40)
+  Qua3          String? @db.VarChar(40)
+  Qua4          String? @db.VarChar(40)
+  Signature     Bytes?
+  PassWord      String? @db.VarChar(30)
+  GreetingsId   Int?
+  Registration  String? @db.VarChar(100)
+}
+
+model pathologistlogin {
+  PthlogistLoginId Int       @id
+  PathologistId    Int?
+  Pathologist      String?   @db.VarChar(100)
+  LoginDate        DateTime? @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model patienthistort {
+  RegistrationId String?   @db.VarChar(20)
+  PVisitId       Int?
+  Diagnosis      String?   @db.VarChar(200)
+  Investigation  String?   @db.VarChar(200)
+  ReviewDt       DateTime? @db.DateTime(0)
+  Hospital       String?   @db.Char(1)
+  Remarks        String?   @db.VarChar(200)
+  PHihtory       String?   @db.VarChar(200)
+  SendDt         DateTime? @db.DateTime(0)
+  sugar          String?   @db.Char(1)
+  alcholic       String?   @db.Char(1)
+  tobacco        String?   @db.Char(1)
+  appetite       String?   @db.Char(100)
+  admissionid    String?   @db.VarChar(20)
+
+  @@ignore
+}
+
+model profile {
+  ProfileId       Int     @id
+  Profile         String? @db.VarChar(50)
+  Rate            Float?
+  DeliveryAfter   Int?
+  NotReq          Int?
+  Interpretation  String? @db.LongText
+  SubDepartmentId Int?
+  cost            Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model profiletest {
+  ProfileId Int?
+  TestId    Int?
+  SlNo      Int?
+
+  @@ignore
+}
+
+model rack {
+  RACKId Int     @id
+  RACK   String? @db.VarChar(50)
+  ROWId  Int?
+  WALLId Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model radreq {
+  RadReqId     String?   @db.VarChar(12)
+  RadReqNo     String?   @db.VarChar(20)
+  CaseId       String?   @db.VarChar(12)
+  DepartmentId Int?
+  CaseDate     DateTime? @db.DateTime(0)
+  DPSlip       DateTime? @db.DateTime(0)
+  DPTime       DateTime? @db.DateTime(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model refedit {
+  FinalBillId             String?   @db.VarChar(20)
+  SlNo                    Int?
+  bedchargeedit           Float?
+  otherchargeedit         Float?
+  medchargeedit           Float?
+  surgerychargeedit       Float?
+  rmochargeedit           Float?
+  drvisitchargeedit       Float?
+  discountedit            Float?
+  otchargeedit            Float?
+  otsurchargeedit         Float?
+  otanesthesianchargeedit Float?
+  EDATE                   DateTime? @db.DateTime(0)
+  diagochargeedit         Float?
+  advedit                 Int?
+  SERVEDIT                Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model remarks {
+  RemarksId Int?
+  Remarks   String? @db.VarChar(255)
+  Type      String? @db.VarChar(2)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model reportapproval {
+  CaseNo      String?   @db.VarChar(100)
+  ReportName  String?   @db.VarChar(200)
+  Approved    Int?
+  ApproveBy   String?   @db.VarChar(200)
+  ApproveDate DateTime? @db.DateTime(0)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model reportheading {
+  ReportHeadingId Int?
+  ReportHeading   String? @db.VarChar(100)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model requidigodetail {
+  RequidigoId String? @db.VarChar(20)
+  testId      Int?
+  DoseId      Int?
+  issueYN     String? @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model requidigomaster {
+  RequidigoId String?   @db.VarChar(20)
+  RequidigoNo String?   @db.VarChar(20)
+  AdmitionId  String?   @db.VarChar(20)
+  RequiDate   DateTime? @db.DateTime(0)
+  Remarks     String?   @db.VarChar(200)
+  UserId      Int?
+  BedId       Int?
+  refid       String?   @db.VarChar(20)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model requimeddetail {
+  RequiMedId String? @db.VarChar(20)
+  ItemId     Int?
+  DoseId     Int?
+  NoOfDays   Int?
+  issueYN    String? @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model requimedmaster {
+  RequiMedId String?   @db.VarChar(20)
+  RequiMedNo String?   @db.VarChar(20)
+  AdmitionId String?   @db.VarChar(20)
+  RequiDate  DateTime? @db.DateTime(0)
+  Remarks    String?   @db.VarChar(200)
+  UserId     Int?
+  BedId      Int?
+
+  @@ignore
+}
+
+model retest {
+  ReTestId   String    @id @db.VarChar(12)
+  ReTestNo   String?   @db.VarChar(15)
+  ReTestTime String?   @db.VarChar(15)
+  ReTestDate DateTime? @db.DateTime(0)
+  CaseId     String?   @db.VarChar(12)
+  UserId     Int?
+  ReTestAmt  Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model retestdtl {
+  ReTestId String? @db.VarChar(12)
+  TestId   Int?
+  TestRate Float?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model returnmeddtl {
+  ReturnMedId String?   @db.VarChar(20)
+  ItemId      Int?
+  Unit        String?   @db.VarChar(12)
+  GodownId    Int?
+  BatchId     Int?
+  ExpDate     DateTime? @db.DateTime(0)
+  Qty         Float?
+  Free        Float?
+  Rate        Float?
+  VatP        Float?
+  Vat         Float?
+  TotalAmt    Float?
+  UserId      Int?
+  NRate       Float?
+
+  @@ignore
+}
+
+model returnmedmaster {
+  ReturnMedId String    @id @db.VarChar(20)
+  ReturnMedNo String?   @db.VarChar(20)
+  AdmitionId  String?   @db.VarChar(20)
+  ReturnDate  DateTime? @db.DateTime(0)
+  UserId      Int?
+  Discount    Float?
+  RoundOff    Float?
+  NetAmount   Float?
+  BedId       Int?
+  MBedNo      String?   @db.VarChar(20)
+  ReturnType  Int?
+  SGST        Float?
+  CGST        Float?
+}
+
+model roomno {
+  RoomNoId Int     @id
+  RoomNo   String? @db.VarChar(50)
+}
+
+model row {
+  ROWId  Int     @id
+  ROW    String? @db.VarChar(50)
+  WALLId Int?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model rptaprvlcaseno {
+  CaseNo   String?   @db.VarChar(100)
+  CaseDate DateTime? @db.DateTime(0)
+
+  @@ignore
+}
+
+model saas_registraction_table {
+  srt_id                  Int                                         @id @default(autoincrement())
+  srt_hospital_name       String?                                     @db.VarChar(255)
+  srt_hospital_logo       String?                                     @db.VarChar(255)
+  srt_hospital_email      String?                                     @db.VarChar(50)
+  srt_hospital_type       saas_registraction_table_srt_hospital_type? @default(Private)
+  srt_phone               String?                                     @db.VarChar(20)
+  srt_address             String?                                     @db.VarChar(500)
+  srt_city                String?                                     @db.VarChar(100)
+  srt_state               String?                                     @db.VarChar(100)
+  srt_pin_code            String?                                     @db.VarChar(10)
+  srt_no_of_beds          Int?
+  srt_emergency_available Boolean?                                    @default(false)
+  srt_ambulance_contact   String?                                     @db.VarChar(20)
+  srt_status              saas_registraction_table_srt_status?        @default(pending)
+  srt_is_verified         Boolean?                                    @default(false)
+  srt_created_at          DateTime?                                   @default(now()) @db.DateTime(0)
+  srt_updated_at          DateTime?                                   @default(now()) @db.DateTime(0)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model salutation {
+  SalutationId Int?
+  Salutation   String? @db.VarChar(50)
+  sex          String? @db.VarChar(50)
+
+  @@ignore
+}
+
+model sampletype {
+  SampleTypeId Int     @id
+  SampleType   String? @db.VarChar(50)
+  Colour       String? @db.VarChar(20)
+}
+
+model service {
+  SERVICEId   Int     @id
+  SERVICE     String? @db.VarChar(200)
+  SERVICECODE Float?
+
+  @@map("service")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model serviceotherch {
+  otherchargeId Int?
+  serviceId     Int?
+  Rate          Float?
+
+  @@ignore
+}
+
+model servicetype {
+  ServiceTypeId Int     @id
+  ServiceType   String? @db.VarChar(50)
+  AreaId        Int?
+  Rate          Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model sms {
+  MOB1     String? @db.VarChar(10)
+  MOB2     String? @db.VarChar(10)
+  SenderId String? @db.VarChar(60)
+  UserName String? @db.VarChar(20)
+  Password String? @db.VarChar(20)
+  MOB3     String? @db.VarChar(10)
+  MOB4     String? @db.VarChar(10)
+  MOB5     String? @db.VarChar(10)
+  MOB6     String? @db.VarChar(10)
+  APIKye   String? @db.VarChar(100)
+  notes    String? @db.LongText
+
+  @@ignore
+}
+
+model speciality {
+  SpecialityId Int     @id @default(autoincrement())
+  Speciality   String? @db.VarChar(50)
+  Code         String? @db.VarChar(3)
+  OT           String? @db.VarChar(1)
+}
+
+model stockadj {
+  StockAdjId   String    @id @db.VarChar(20)
+  StockAdjDate DateTime? @db.DateTime(0)
+  StockAdjNo   String?   @db.VarChar(20)
+  AdjType      String?   @db.VarChar(1)
+  UserId       Int?
+  Reason       String?   @db.VarChar(150)
+  EntryType    String?   @db.VarChar(1)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model stockadjdtl {
+  StockAdjId String?   @db.VarChar(20)
+  ItemId     Int?
+  Unit       String?   @db.VarChar(12)
+  GodownId   Int?
+  BatchId    Int?
+  ExpDate    DateTime? @db.DateTime(0)
+  Qty        Float?
+
+  @@ignore
+}
+
+model stocktrns {
+  StockTrnsId String    @id @db.VarChar(20)
+  StockTrnsDt DateTime? @db.DateTime(0)
+  StockTrnsNo String?   @db.VarChar(20)
+  UserId      Int?
+  Reason      String?   @db.VarChar(150)
+  indenyn     String?   @db.VarChar(1)
+  indenNo     String?   @db.VarChar(20)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model stocktrnsdtl {
+  StockTrnsId String?   @db.VarChar(20)
+  ItemId      Int?
+  Unit        String?   @db.VarChar(12)
+  GodownFId   Int?
+  GodownTId   Int?
+  BatchId     Int?
+  ExpDate     DateTime? @db.DateTime(0)
+  Qty         Float?
+
+  @@ignore
+}
+
+model subcompany {
+  SubCompanyId Int     @id
+  SubCompany   String? @db.VarChar(50)
+  DescId       Int?
+}
+
+model subdepartment {
+  SubDepartmentId Int     @id @default(autoincrement())
+  SubDepartment   String? @db.VarChar(50)
+  DepartmentId    Int?
+  SpRemTag        Int?
+}
+
+model test {
+  TestId          Int     @id
+  Test            String? @db.VarChar(50)
+  ReportingName   String? @db.VarChar(50)
+  SubDepartmentId Int?
+  Method          String? @db.VarChar(50)
+  Rate            Float?
+  DescFormat      Int?    @db.SmallInt
+  DeliveryAfter   Int?    @db.SmallInt
+  Introduction    String? @db.LongText
+  Delivery        String? @db.VarChar(4)
+  Interpretation  String? @db.LongText
+  ARate           Float?
+  BRate           Float?
+  RSlNo           Int?
+  TestCode        String? @db.VarChar(10)
+  NotReq          Int?
+  RateEdit        Int?
+  FForm           Int?
+  SMType          String? @db.VarChar(20)
+  OutSource       Int?
+  IsFormulative   Int?
+  FormulaText     String? @db.VarChar(200)
+  FormulaValue    String? @db.VarChar(200)
+  NABLTag         Int?
+  IsDisc          Int?
+  NSBilling       Int?
+  ICURate         Float?
+  CABRate         Float?
+  SUITRate        Float?
+  SampleTypeId    Int?
+  ActualColName   String? @db.VarChar(100)
+  IsProfile       Int?
+  agent           Int?
+  cNotReq         Int?
+  cost            Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model testgroup {
+  TestGroupId Int?
+  TestId      Int?
+  GroupName   String? @db.VarChar(50)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model testgroupdtl {
+  TestGroupId    Int?
+  TestPropertyId Int?
+  TestId         Int?
+
+  @@ignore
+}
+
+model testparameter {
+  PARAMETERId Int     @id
+  PARAMETER   String? @db.VarChar(50)
+  TESTId      Int?
+  Rate        Float?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model testproperty {
+  TestId         Int?
+  TestProperty   String? @db.VarChar(200)
+  Uom            String? @db.VarChar(20)
+  PropertyType   Int?    @db.SmallInt
+  ComMin         String? @db.VarChar(40)
+  ComMax         String? @db.VarChar(50)
+  MaleMin        String? @db.VarChar(40)
+  MaleMax        String? @db.VarChar(50)
+  FemaleMin      String? @db.VarChar(40)
+  FemaleMax      String? @db.VarChar(50)
+  ChildMin       String? @db.VarChar(40)
+  ChildMax       String? @db.VarChar(50)
+  Others         String? @db.LongText
+  TestPropertyId Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model testproprepoval {
+  TestId         Int?
+  RepoVal        String? @db.VarChar(200)
+  TestPropertyId Int?
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model testproval {
+  CaseId         String? @db.VarChar(12)
+  TestId         Int?
+  TestPropertyId Int?
+  TestProVal     String? @db.VarChar(100)
+  BarCodeNo      String? @db.VarChar(50)
+  LISVal         String? @db.LongText
+  Alart          String? @db.VarChar(2)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model tpaapproval {
+  admId String?   @db.VarChar(20)
+  slno  Int?
+  APAmt Float?
+  APDt  DateTime? @db.DateTime(0)
+  APYN  String?   @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model unadjvou {
+  DescriptionId Int?
+  HeadId        Int?
+  Amt           Float?
+  UnAdj         String? @db.VarChar(1)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model usertrial {
+  UserId    Int?
+  FrmName   String?   @db.VarChar(30)
+  EntryType String?   @db.VarChar(30)
+  EntryDate DateTime? @db.DateTime(0)
+  EntryTime DateTime? @db.DateTime(0)
+  RecordNo  String?   @db.VarChar(30)
+  Amount    Float?
+
+  @@ignore
+}
+
+model visitour {
+  VisitOurId Int     @id
+  VisitOur   String? @db.VarChar(50)
+}
+
+model visittype {
+  VisitTypeId Int     @id
+  VisitType   String? @db.VarChar(50)
+  RateYN      String? @db.VarChar(1)
+  SrvChYN     String? @db.VarChar(1)
+  RefferaId   Int?
+  REG         String? @db.VarChar(1)
+  grp         Int?
+}
+
+model visittypegrp {
+  visittypegrpId Int         @id
+  visittypegrp   String?     @db.VarChar(50)
+}
+
+
+
+model wall {
+  WALLId Int     @id
+  WALL   String? @db.VarChar(50)
+}
+
+model zone {
+  ZoneId Int     @id @default(autoincrement())
+  Zone   String? @db.VarChar(50)
+}
+
+enum PaymentStatus {
+  pending
+  completed
+  failed
+  refunded
+}
+
+enum appointment_booking_app_appointments_appointment_type {
+  online
+  offline
+}
+
+enum saas_registraction_table_srt_hospital_type {
+  Private
+  Government
+  Clinic
+  Trust
+}
+
+enum appointment_booking_app_prescription_delivery_delivery_type {
+  home_delivery
+  hospital_pickup
+}
+
+enum appointment_booking_app_nursing_bookings_existing_patient {
+  yes
+  no
+}
+
+enum appointment_booking_app_appointments_status {
+  pending
+  accepted
+  cancelled
+  completed
+}
+
+enum diagnostic_bookings_status {
+  pending
+  confirmed
+  completed
+  cancelled
+}
+
+enum appointment_booking_app_ambulance_pickup_status {
+  pending
+  accepted
+  completed
+  cancelled
+}
+
+enum appointment_booking_app_prescription_delivery_status {
+  pending
+  confirmed
+  delivered
+  cancelled
+}
+
+enum appointment_booking_app_nursing_bookings_gender {
+  Male
+  Female
+  Other
+}
+
+enum appointment_booking_app_nursing_bookings_status {
+  pending
+  confirmed
+  completed
+  cancelled
+}
+
+enum saas_registraction_table_srt_status {
+  pending
+  active
+  inactive
+}
+
+enum appointment_booking_app_appointments_payment_method {
+  cash
+  card
+  upi
+  net_banking
+  cheque
+}
+
+model GenericMedicine {
+  id          Int      @id @default(autoincrement())
+  name        String   @db.VarChar(255)
+  genericName String   @map("generic_name") @db.VarChar(255)
+  manufacturer String? @db.VarChar(255)
+  strength    String?  @db.VarChar(100)
+  dosageForm  String?  @map("dosage_form") @db.VarChar(100)
+  price       Decimal  @default(0.00) @db.Decimal(10, 2)
+  description String?  @db.Text
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("generic_medicines")
+}
+
+

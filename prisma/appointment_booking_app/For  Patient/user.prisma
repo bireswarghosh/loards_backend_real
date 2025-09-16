@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+
+
+datasource db {
+  provider = "mysql"
+  // url      = "mysql://root:@localhost:3306/lordop"
+
+  url      = "mysql://u404499168_appstrice:w4$op$DNDjH@193.203.184.212:3306/u404499168_lordsmainsoft"
+}
+
+
+
+
+model  appointment_booking_app_patient{
+
+  id       Int     @id @default(autoincrement())
+  fullName String  @db.VarChar(100)
+  email    String  @unique @db.VarChar(100)
+  mobileNo String  @db.VarChar(15)
+  password String  @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("appointment_booking_app_patient")
+
+}
+
+
+
+
+
+
+
+

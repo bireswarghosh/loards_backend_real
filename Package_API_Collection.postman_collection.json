@@ -1,0 +1,160 @@
+{
+	"info": {
+		"name": "Package API Collection",
+		"description": "Complete CRUD operations for Package API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Packages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/packages",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages"]
+				}
+			}
+		},
+		{
+			"name": "Get Package by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/packages/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages", "1"]
+				}
+			}
+		},
+		{
+			"name": "Create New Package",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Package\": \"NEW SURGERY\",\n  \"DescId\": 1,\n  \"Rate\": 25000,\n  \"GSTAmt\": 0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/packages",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages"]
+				}
+			}
+		},
+		{
+			"name": "Update Package",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Package\": \"UPDATED SURGERY\",\n  \"DescId\": 1,\n  \"Rate\": 30000,\n  \"GSTAmt\": 500\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/packages/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages", "1"]
+				}
+			}
+		},
+		{
+			"name": "Delete Package",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/packages/999",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages", "999"]
+				}
+			}
+		},
+		{
+			"name": "Search Packages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/packages/search?q=KIDNEY",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages", "search"],
+					"query": [
+						{
+							"key": "q",
+							"value": "KIDNEY"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Search Packages - NORMAL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/packages/search?q=NORMAL",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages", "search"],
+					"query": [
+						{
+							"key": "q",
+							"value": "NORMAL"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Create Multiple Packages",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Package\": \"HEART SURGERY\",\n  \"DescId\": 1,\n  \"Rate\": 200000,\n  \"GSTAmt\": 5000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/packages",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "5000",
+					"path": ["api", "packages"]
+				}
+			}
+		}
+	]
+}

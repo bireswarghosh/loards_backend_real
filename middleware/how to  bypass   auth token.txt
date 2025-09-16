@@ -1,0 +1,40 @@
+To add more routes that don't need authentication, you have two options:
+
+Option 1: Add to the path checker middleware
+Open path-checker.middleware.js
+
+Add a new check for your route:
+
+// Check for your new route
+if (fullPath.includes('/your-new-route')) {
+  req.isYourNewRoute = true;
+}
+
+Copy
+javascript
+Then update auth.middleware.js to check for this flag:
+
+// Skip auth for your new route
+if (req.isYourNewRoute) {
+  return next();
+}
+
+Copy
+javascript
+Option 2: Add directly to auth middleware
+Simply add your new route to the existing conditions:
+
+// Skip auth for patient-auth endpoints and your new route
+if (req.isPatientAuthRoute || 
+    req.path === '/patient-auth/signup' || 
+    req.path === '/patient-auth/signin' || 
+    req.path === '/api/v1/patient-auth/signup' || 
+    req.path.startsWith('/patient-auth/profile/') ||
+    req.path.startsWith('/your-new-route/')
+    ) {
+  return next();
+}
+
+Copy
+javascript
+This way, any route that starts with /your-new-route/ will bypass authentication.

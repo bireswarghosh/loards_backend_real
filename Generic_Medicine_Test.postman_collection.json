@@ -1,0 +1,331 @@
+{
+	"info": {
+		"name": "Generic Medicine API Test",
+		"description": "Complete test collection for Generic Medicine API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000/api/v1"
+		}
+	],
+	"item": [
+		{
+			"name": "1. CREATE Medicine",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Crocin\",\n  \"genericName\": \"Paracetamol\",\n  \"manufacturer\": \"GSK\",\n  \"strength\": \"500mg\",\n  \"dosageForm\": \"Tablet\",\n  \"price\": 15.00,\n  \"description\": \"Pain reliever and fever reducer\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"]
+				}
+			}
+		},
+		{
+			"name": "2. GET All Medicines",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"]
+				}
+			}
+		},
+		{
+			"name": "3. GET All with Pagination",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines?page=1&limit=5",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "4. GET All with Search",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines?search=crocin",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"],
+					"query": [
+						{
+							"key": "search",
+							"value": "crocin"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "5. GET Medicine by ID",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "1"]
+				}
+			}
+		},
+		{
+			"name": "6. SEARCH Medicines",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/search?query=paracetamol",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "search"],
+					"query": [
+						{
+							"key": "query",
+							"value": "paracetamol"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "7. SEARCH with Pagination",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/search?query=tablet&page=1&limit=10",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "search"],
+					"query": [
+						{
+							"key": "query",
+							"value": "tablet"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "8. SEARCH by Manufacturer",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/search?query=GSK",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "search"],
+					"query": [
+						{
+							"key": "query",
+							"value": "GSK"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "9. UPDATE Medicine",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Crocin Advance\",\n  \"genericName\": \"Paracetamol\",\n  \"manufacturer\": \"GSK\",\n  \"strength\": \"650mg\",\n  \"dosageForm\": \"Tablet\",\n  \"price\": 18.50,\n  \"description\": \"Advanced pain reliever and fever reducer\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "1"]
+				}
+			}
+		},
+		{
+			"name": "10. DELETE Medicine",
+			"request": {
+				"method": "DELETE",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/1",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "1"]
+				}
+			}
+		},
+		{
+			"name": "11. Test Error - GET Non-existent",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/999",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "999"]
+				}
+			}
+		},
+		{
+			"name": "12. Test Error - Search Empty",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/search",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "search"]
+				}
+			}
+		},
+		{
+			"name": "13. Bulk CREATE - Multiple Medicines",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Dolo 650\",\n  \"genericName\": \"Paracetamol\",\n  \"manufacturer\": \"Micro Labs\",\n  \"strength\": \"650mg\",\n  \"dosageForm\": \"Tablet\",\n  \"price\": 18.50,\n  \"description\": \"Fever and pain relief\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"]
+				}
+			}
+		},
+		{
+			"name": "14. CREATE - Combiflam",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Combiflam\",\n  \"genericName\": \"Ibuprofen + Paracetamol\",\n  \"manufacturer\": \"Sanofi\",\n  \"strength\": \"400mg+325mg\",\n  \"dosageForm\": \"Tablet\",\n  \"price\": 25.00,\n  \"description\": \"Pain and inflammation relief\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"]
+				}
+			}
+		},
+		{
+			"name": "15. CREATE - Azithral",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Azithral\",\n  \"genericName\": \"Azithromycin\",\n  \"manufacturer\": \"Alembic Pharma\",\n  \"strength\": \"500mg\",\n  \"dosageForm\": \"Tablet\",\n  \"price\": 85.00,\n  \"description\": \"Antibiotic\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"]
+				}
+			}
+		},
+		{
+			"name": "16. Test Pagination - Page 2",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines?page=2&limit=2",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "17. Test Search - Multiple Results",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines/search?query=paracetamol&limit=20",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines", "search"],
+					"query": [
+						{
+							"key": "query",
+							"value": "paracetamol"
+						},
+						{
+							"key": "limit",
+							"value": "20"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "18. Test Large Limit",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{baseUrl}}/generic-medicines?limit=150",
+					"host": ["{{baseUrl}}"],
+					"path": ["generic-medicines"],
+					"query": [
+						{
+							"key": "limit",
+							"value": "150"
+						}
+					]
+				}
+			}
+		}
+	]
+}

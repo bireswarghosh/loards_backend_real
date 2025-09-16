@@ -1,0 +1,103 @@
+{
+  "info": {
+    "name": "Outdoor Other Charge API",
+    "description": "API endpoints for Outdoor Other Charge management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1NDg5ODg1MywiZXhwIjoyNTEyMjgxMjUzfQ.QeHkKyameExcGYkUlP7MwoQIPDplAjNGF3NZCSRMqIw",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Get All Charges",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/outdoor-other-charges",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "outdoor-other-charges"]
+        }
+      }
+    },
+    {
+      "name": "Get Charge by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/outdoor-other-charges/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "outdoor-other-charges", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create Charge",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"OtherCharge\": \"EMERGENCY CHARGES\",\n  \"Rate\": 300,\n  \"UNIT\": \"1\",\n  \"OT\": \"N\",\n  \"OTSLOTID\": 0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/outdoor-other-charges",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "outdoor-other-charges"]
+        }
+      }
+    },
+    {
+      "name": "Update Charge",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"OtherCharge\": \"EMERGENCY CHARGES UPDATED\",\n  \"Rate\": 350,\n  \"UNIT\": \"1\",\n  \"OT\": \"N\",\n  \"OTSLOTID\": 0\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/outdoor-other-charges/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "outdoor-other-charges", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Charge",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/outdoor-other-charges/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "outdoor-other-charges", "1"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ]
+}

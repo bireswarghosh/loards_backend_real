@@ -1,0 +1,1 @@
+-- Fix BedId to be auto-increment\nALTER TABLE bedmaster MODIFY COLUMN BedId INT AUTO_INCREMENT;

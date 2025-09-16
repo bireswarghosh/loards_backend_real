@@ -1,0 +1,103 @@
+{
+  "info": {
+    "name": "Chief API",
+    "description": "API endpoints for Chief management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlzQWRtaW4iOnRydWUsImlhdCI6MTc1NDg5ODg1MywiZXhwIjoyNTEyMjgxMjUzfQ.QeHkKyameExcGYkUlP7MwoQIPDplAjNGF3NZCSRMqIw",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Get All Chiefs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/chiefs",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "chiefs"]
+        }
+      }
+    },
+    {
+      "name": "Get Chief by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/chiefs/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "chiefs", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create Chief",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chief\": \"HEADACHE\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/chiefs",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "chiefs"]
+        }
+      }
+    },
+    {
+      "name": "Update Chief",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"chief\": \"FEVER\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/chiefs/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "chiefs", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Chief",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/chiefs/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "chiefs", "1"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ]
+}

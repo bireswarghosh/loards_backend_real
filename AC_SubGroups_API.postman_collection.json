@@ -1,0 +1,119 @@
+{
+  "info": {
+    "name": "AC Sub Groups API",
+    "description": "API endpoints for managing AC Sub Groups",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All AC Sub Groups",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-subgroups?page=1&limit=10&search=",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-subgroups"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "search",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get AC Groups Dropdown",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-subgroups/ac-groups-dropdown",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-subgroups", "ac-groups-dropdown"]
+        }
+      }
+    },
+    {
+      "name": "Get AC Sub Group by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-subgroups/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-subgroups", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create AC Sub Group",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"SubGrp\": \"PETTY CASH\",\n  \"AcGroupId\": 1,\n  \"system\": \"Y\",\n  \"LgrLike\": \"Y\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-subgroups",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-subgroups"]
+        }
+      }
+    },
+    {
+      "name": "Update AC Sub Group",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"SubGrp\": \"UPDATED CASH IN HAND\",\n  \"AcGroupId\": 1,\n  \"system\": \"N\",\n  \"LgrLike\": \"N\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-subgroups/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-subgroups", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete AC Sub Group",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/v1/ac-subgroups/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "v1", "ac-subgroups", "1"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ]
+}

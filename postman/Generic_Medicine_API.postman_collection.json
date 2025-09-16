@@ -1,0 +1,176 @@
+{
+  "info": {
+    "name": "Generic Medicine API - জেনেরিক মেডিসিন API",
+    "description": "Complete CRUD API for Generic Medicines with search and pagination",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "CREATE - নতুন মেডিসিন তৈরি",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Napa\",\n  \"genericName\": \"Paracetamol\",\n  \"manufacturer\": \"Beximco Pharmaceuticals\",\n  \"strength\": \"500mg\",\n  \"dosageForm\": \"Tablet\",\n  \"price\": 2.50,\n  \"description\": \"Pain reliever and fever reducer\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines"]
+        }
+      }
+    },
+    {
+      "name": "READ - সব মেডিসিন (পেজিনেশন সহ)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines?page=1&limit=10",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "READ - সার্চ সহ সব মেডিসিন",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines?page=1&limit=10&search=napa",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            },
+            {
+              "key": "search",
+              "value": "napa"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "READ - আইডি দিয়ে মেডিসিন",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines", "1"]
+        }
+      }
+    },
+    {
+      "name": "SEARCH - অভিধানের মতো অনুসন্ধান",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines/search?query=paracetamol&page=1&limit=20",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines", "search"],
+          "query": [
+            {
+              "key": "query",
+              "value": "paracetamol"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "20"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "SEARCH - বিভিন্ন কিওয়ার্ড দিয়ে",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines/search?query=square&page=1&limit=15",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines", "search"],
+          "query": [
+            {
+              "key": "query",
+              "value": "square"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "15"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "UPDATE - মেডিসিন আপডেট",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Napa Extra\",\n  \"genericName\": \"Paracetamol\",\n  \"manufacturer\": \"Beximco Pharmaceuticals\",\n  \"strength\": \"665mg\",\n  \"dosageForm\": \"Tablet\",\n  \"price\": 3.00,\n  \"description\": \"Enhanced pain reliever and fever reducer\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines", "1"]
+        }
+      }
+    },
+    {
+      "name": "DELETE - মেডিসিন মুছে ফেলা",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/generic-medicines/1",
+          "host": ["{{baseUrl}}"],
+          "path": ["generic-medicines", "1"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1",
+      "type": "string"
+    }
+  ]
+}

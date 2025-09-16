@@ -1,0 +1,377 @@
+{
+	"info": {
+		"name": "AC Head & Group API",
+		"description": "Complete CRUD API for AC Head and AC Group management with relationships",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000/api/v1"
+		}
+	],
+	"item": [
+		{
+			"name": "AC Head APIs",
+			"item": [
+				{
+					"name": "1. CREATE AC Head",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACHead\": \"Assets\",\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads"]
+						}
+					}
+				},
+				{
+					"name": "2. GET All AC Heads",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads"]
+						}
+					}
+				},
+				{
+					"name": "3. GET AC Heads with Pagination",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads?page=1&limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "4. GET AC Heads with Search",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads?search=assets",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads"],
+							"query": [
+								{
+									"key": "search",
+									"value": "assets"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "5. GET AC Head by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads", "1"]
+						}
+					}
+				},
+				{
+					"name": "6. UPDATE AC Head",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACHead\": \"Fixed Assets\",\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads", "1"]
+						}
+					}
+				},
+				{
+					"name": "7. DELETE AC Head",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "AC Group APIs",
+			"item": [
+				{
+					"name": "1. CREATE AC Group",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACGroup\": \"Current Assets\",\n  \"ACHeadId\": 1,\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups"]
+						}
+					}
+				},
+				{
+					"name": "2. GET All AC Groups",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups"]
+						}
+					}
+				},
+				{
+					"name": "3. GET AC Groups with Pagination",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups?page=1&limit=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "4. GET AC Groups with Search",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups?search=current",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups"],
+							"query": [
+								{
+									"key": "search",
+									"value": "current"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "5. GET AC Group by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups", "1"]
+						}
+					}
+				},
+				{
+					"name": "6. UPDATE AC Group",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACGroup\": \"Current Assets Updated\",\n  \"ACHeadId\": 1,\n  \"System\": \"N\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups", "1"]
+						}
+					}
+				},
+				{
+					"name": "7. DELETE AC Group",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Dropdown APIs",
+			"item": [
+				{
+					"name": "GET AC Heads for Dropdown",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads-dropdown",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads-dropdown"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Bulk Test Data",
+			"item": [
+				{
+					"name": "CREATE - Liabilities",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACHead\": \"Liabilities\",\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads"]
+						}
+					}
+				},
+				{
+					"name": "CREATE - Income",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACHead\": \"Income\",\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads"]
+						}
+					}
+				},
+				{
+					"name": "CREATE - Expenses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACHead\": \"Expenses\",\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-heads",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-heads"]
+						}
+					}
+				},
+				{
+					"name": "CREATE Group - Fixed Assets",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACGroup\": \"Fixed Assets\",\n  \"ACHeadId\": 1,\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups"]
+						}
+					}
+				},
+				{
+					"name": "CREATE Group - Current Liabilities",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ACGroup\": \"Current Liabilities\",\n  \"ACHeadId\": 2,\n  \"System\": \"Y\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/ac-groups",
+							"host": ["{{baseUrl}}"],
+							"path": ["ac-groups"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

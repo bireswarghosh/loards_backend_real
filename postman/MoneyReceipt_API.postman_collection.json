@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "money-receipt-api-collection",
+		"name": "Money Receipt API",
+		"description": "API collection for Indoor Money Receipt management with Admission relation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Money Receipts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/moneyreceipt",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"moneyreceipt"
+					]
+				},
+				"description": "Get all money receipts with admission details"
+			}
+		},
+		{
+			"name": "Get Money Receipt by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/moneyreceipt/MR001",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"moneyreceipt",
+						"MR001"
+					]
+				},
+				"description": "Get specific money receipt by MoneyreeciptId"
+			}
+		},
+		{
+			"name": "Get Money Receipts by Admission ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/moneyreceipt/admission/000295%2F25-26",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"moneyreceipt",
+						"admission",
+						"000295%2F25-26"
+					]
+				},
+				"description": "Get all money receipts for specific admission ID"
+			}
+		},
+		{
+			"name": "Create Money Receipt",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MoneyreeciptId\": \"MR001\",\n  \"MoneyreeciptNo\": \"MR-2025-001\",\n  \"RefferenceId\": \"000295/25-26\",\n  \"ReceiptType\": 1,\n  \"ReceiptDate\": \"2025-01-15T10:30:00.000Z\",\n  \"PaymentType\": 1,\n  \"Amount\": 15000.50,\n  \"Bank\": \"State Bank of India\",\n  \"Cheque\": \"CHQ123456\",\n  \"ChqDate\": \"2025-01-15T00:00:00.000Z\",\n  \"Narration\": \"Payment for admission charges\",\n  \"UserId\": 1,\n  \"SlipNo\": \"SLP001\",\n  \"ClearDate\": \"2025-01-16T00:00:00.000Z\",\n  \"TDS\": 150.00,\n  \"PaidBy\": \"John Doe\",\n  \"Remarks\": \"First installment payment\",\n  \"ReceiptTime\": \"10:30 AM\",\n  \"PrintDate\": \"2025-01-15T10:35:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/moneyreceipt",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"moneyreceipt"
+					]
+				},
+				"description": "Create new money receipt with all fields"
+			}
+		},
+		{
+			"name": "Create Money Receipt - Sample 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"MoneyreeciptId\": \"MR002\",\n  \"MoneyreeciptNo\": \"MR-2025-002\",\n  \"RefferenceId\": \"000295/25-26\",\n  \"ReceiptType\": 2,\n  \"ReceiptDate\": \"2025-01-16T14:20:00.000Z\",\n  \"PaymentType\": 2,\n  \"Amount\": 25000.00,\n  \"Bank\": \"HDFC Bank\",\n  \"Cheque\": \"CHQ789012\",\n  \"ChqDate\": \"2025-01-16T00:00:00.000Z\",\n  \"Narration\": \"Payment for medical charges\",\n  \"UserId\": 1,\n  \"SlipNo\": \"SLP002\",\n  \"ClearDate\": \"2025-01-17T00:00:00.000Z\",\n  \"TDS\": 250.00,\n  \"PaidBy\": \"Jane Smith\",\n  \"Remarks\": \"Second installment payment\",\n  \"ReceiptTime\": \"02:20 PM\",\n  \"PrintDate\": \"2025-01-16T14:25:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/moneyreceipt",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"moneyreceipt"
+					]
+				},
+				"description": "Create another money receipt sample"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://xrk77z9r-5000.inc1.devtunnels.ms",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "your_auth_token_here",
+			"type": "string"
+		}
+	]
+}

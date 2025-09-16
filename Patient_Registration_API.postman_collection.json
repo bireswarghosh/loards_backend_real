@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "12345678-1234-1234-1234-123456789012",
+		"name": "Patient Registration API",
+		"description": "API collection for testing Patient Registration endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Patient Registrations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/patientregistration",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"patientregistration"
+					]
+				}
+			}
+		},
+		{
+			"name": "Create Patient Registration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"RegistrationId\": \"REG001\",\n  \"RegistrationNo\": \"R-001\",\n  \"RegistrationDate\": \"2024-01-15 10:30:00\",\n  \"RegistrationTime\": \"10:30:00\",\n  \"PatientName\": \"John Doe\",\n  \"Add1\": \"123 Main Street\",\n  \"Add2\": \"Apartment 4B\",\n  \"Add3\": \"Downtown\",\n  \"Age\": 35,\n  \"AgeType\": \"Y\",\n  \"Sex\": \"M\",\n  \"MStatus\": \"M\",\n  \"PhoneNo\": \"1234567890\",\n  \"AreaId\": 1,\n  \"ReligionId\": 1,\n  \"UserId\": 42,\n  \"SpecialityId\": 1,\n  \"DoctorId\": 1,\n  \"RegCh\": 500.00,\n  \"AdvAmt\": 100.00,\n  \"Discount\": 50.00,\n  \"TotAmount\": 550.00,\n  \"BookingDate\": \"2024-01-15 09:00:00\",\n  \"BookingTime\": \"09:00:00\",\n  \"cRegistrationNo\": \"CREG001\",\n  \"EMailId\": \"john.doe@email.com\",\n  \"PPr\": \"Mr\",\n  \"CareOf\": \"S/O\",\n  \"GurdianName\": \"Robert Doe\",\n  \"AgeD\": 0,\n  \"AgeTypeD\": \"M\",\n  \"AgeN\": 0,\n  \"AgeTypeN\": \"D\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/patientregistration",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"patientregistration"
+					]
+				}
+			}
+		},
+		{
+			"name": "Get Patient Registration by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/patientregistration/REG001",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"patientregistration",
+						"REG001"
+					]
+				}
+			}
+		},
+		{
+			"name": "Search by Phone Number",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/patientregistration/search-by-phone?phone=1234567890",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"patientregistration",
+						"search-by-phone"
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "1234567890"
+						}
+					]
+				}
+			}
+		},
+		{
+			"name": "Update Patient Registration",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"PatientName\": \"John Smith\",\n  \"PhoneNo\": \"9876543210\",\n  \"Age\": 36,\n  \"EMailId\": \"john.smith@email.com\",\n  \"Add1\": \"456 Oak Avenue\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/patientregistration/REG001",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"patientregistration",
+						"REG001"
+					]
+				}
+			}
+		},
+		{
+			"name": "Delete Patient Registration",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/patientregistration/REG001",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"patientregistration",
+						"REG001"
+					]
+				}
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "your_jwt_token_here",
+			"type": "string"
+		}
+	]
+}

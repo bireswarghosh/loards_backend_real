@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "advice-api-collection",
+		"name": "Advice API Collection",
+		"description": "Complete API collection for Advice management with CRUD operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Advices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/advices",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"advices"
+					]
+				},
+				"description": "Retrieve all advices from the database"
+			}
+		},
+		{
+			"name": "Get Advice by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/advices/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"advices",
+						"1"
+					]
+				},
+				"description": "Retrieve a specific advice by its ID"
+			}
+		},
+		{
+			"name": "Create New Advice",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Advice\": \"Take rest and drink plenty of water\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/advices",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"advices"
+					]
+				},
+				"description": "Create a new advice entry"
+			}
+		},
+		{
+			"name": "Update Advice",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Advice\": \"Take complete bed rest for 3 days\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/advices/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"advices",
+						"1"
+					]
+				},
+				"description": "Update an existing advice by ID"
+			}
+		},
+		{
+			"name": "Delete Advice",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/advices/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"advices",
+						"1"
+					]
+				},
+				"description": "Delete an advice by ID"
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000/api/v1",
+			"type": "string"
+		}
+	]
+}

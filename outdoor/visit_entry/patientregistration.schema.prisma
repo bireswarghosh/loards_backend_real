@@ -1,0 +1,71 @@
+// Patient Registration Schema for Outdoor Visit Entry
+// Location: backend/outdoor/visit_entry/patientregistration.schema.prisma
+
+model patientregistration {
+  RegistrationId   String    @id @db.VarChar(20)
+  RegistrationNo   String?   @db.VarChar(20)
+  RegistrationDate DateTime?
+  RegistrationTime String?   @db.VarChar(10)
+  PatientName      String?   @db.VarChar(50)
+  Add1             String?   @db.VarChar(50)
+  Add2             String?   @db.VarChar(50)
+  Add3             String?   @db.VarChar(50)
+  
+  // Age Information
+  Age              Float?    // Year Age of the patient
+  AgeType          String?   @db.Char(1)
+  Sex              String?   @db.Char(1)
+  MStatus          String?   @db.Char(1)
+  PhoneNo          String?   @db.VarChar(22)
+  AreaId           Int?
+  ReligionId       Int?
+  UserId           Int?
+  SpecialityId     Int?   
+  DoctorId         Int? 
+
+  // Charges
+  RegCh            Float?    // Registration Charge
+  ProfCh           Float?    // Professional Charge
+  ServiceCh        Float?    // Service Charge
+
+  // Discounts
+  Patient_Discount      Float?
+  Professional_Discount Float?
+  Service_Discount      Float?
+
+  // Payment Information
+  AdvAmt           Float?    // Advance amount
+  Discount         Float?    // Discount amount
+  TotAmount        Float?    // Total amount
+  
+  // Booking Information
+  BookingDate      DateTime? // Advance Booking Date
+  BookingTime      String?   @db.VarChar(10) // Advance booking time
+  cRegistrationNo  String?   @db.VarChar(50) // Cancellation registration no
+  
+  // Contact Information
+  EMailId          String?   @db.VarChar(100)
+  PPr              String?   @db.VarChar(10)
+  CareOf           String?   @db.VarChar(10)
+  GurdianName      String?   @db.VarChar(200)
+  
+  // Age Details
+  AgeD             Float?    // Age in Days
+  AgeTypeD         String?   @db.Char(1) // Age Type in Days
+  AgeN             Float?    // Age in days
+  AgeTypeN         String?   @db.Char(1) // Age Type in days
+  
+  // Bireswar's Additional Fields for Patient Registration
+  Dob              DateTime? // Date of Birth
+  Month            Float?    // Month Age of the patient
+  Day              Float?    // Day Age of the patient
+
+  // Physical Measurements
+  Weight           Float? 
+  Height           Float?
+  BloodGroup       String?   @db.VarChar(10)
+  bpmin            Float?    // Blood Pressure Minimum
+  bpmax            Float?    // Blood Pressure Maximum
+
+  @@map("patientregistration")
+}
